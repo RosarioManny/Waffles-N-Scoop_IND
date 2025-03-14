@@ -1,0 +1,8 @@
+body {
+  height: 100vh;
+  background: azure;
+  background-image: url("../static/images/BG-General.png");
+}
+.nav-container {
+  list-style-type: none;
+}
