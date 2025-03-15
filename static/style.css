@@ -29,7 +29,8 @@ body {
 }
 
 .carousel-item img {
-  width: 100%;
+  width: 30vw;
+  margin: auto;
   display: block;
 }
 
