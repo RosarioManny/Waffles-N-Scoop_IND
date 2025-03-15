@@ -7,18 +7,20 @@
   <title>Waffle N' Scoop</title>
 </head>
 <body>
-  <nav>
+  <nav class="nav-container">
     <div>
-      <div>
-        <img src="" alt="">
+      <div class="nav-logo-container">
+        <a href="/"><img src="../static/images/Waffle-N-Scoope-Logo.png" alt="Logo"></a>
       </div>
-      <ul class="nav-container">
-        <li class="nav-item" href="/about">About</li>
-        <li class="nav-item" href="/sign-in">Sign-in</li>
-        <li class="nav-item" href="/cart">Cart</li>
+      <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link"href="/about">About</a></li>
+        <li class="nav-item"><a class="nav-link"href="/sign-in">Sign-in</a></li>
+        <li class="nav-item"><a class="nav-link"href="/cart">Cart</a></li>
       </ul>
     </div>
   </nav>
-  <h1>Hello Sandra. Its' Manny</h1>
+  <main>
+    {% block main %}{% endblock %}
+  </main>
 </body>
 </html>
