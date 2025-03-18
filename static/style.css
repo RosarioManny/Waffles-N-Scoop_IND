@@ -86,6 +86,7 @@ nav {
 .gallery-section {
   background-color: cornflowerblue;
   padding: 1rem;
+  gap: 20px;
 }
 .carousel {
   width: 100%;
@@ -98,6 +99,7 @@ nav {
   list-style: none;
   padding: 0;
   margin: 0;
+  /* gap: 3px; */
 }
 
 *::before, *:after {
@@ -107,8 +109,6 @@ nav {
 .carousel-item {
   flex: 0 0 33.33%;
   box-sizing: border-box;
-  transition: 200ms opacity ease-in-out;
-  transition-delay: 200ms;
 }
 /* Shown image */
 .carousel-item[data-active] {
@@ -118,13 +118,18 @@ nav {
 }
 
 .carousel-item img {
-  width: 100%;
+  width: 99%;
   height: 50vh;
   display: block;
   object-fit: cover;
   object-position: center;
+  border-radius: 1rem;
 }
 
+
+.carousel-item li {
+  gap: 20px;
+}
 .carousel-button {
   position: absolute;
   background-color: rgba(0, 0, 0, .1);

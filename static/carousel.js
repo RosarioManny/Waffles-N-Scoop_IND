@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded",() => {
       }
     }
     
-    slides.style.transform = `translateX(-${currentIdx * 33.33}%)`;
+    slides.style.transform = `translateX(-${currentIdx * 33.34}%)`;
   }
   setInterval(moveCarousel, 2700);
 })
