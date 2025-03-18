@@ -12,7 +12,7 @@ Waffles N' ScoopLanding
     <h1 class="header-text">Home made Crunch, Natural Experience</h1>
   </section>
   <!-- Product -->
-  <section class="section3">
+  <section class="product-section">
     <div>
       <h2 class="header-pink">New! Birthday Confetti Cake! </h2>
       <p>
@@ -22,39 +22,35 @@ Waffles N' ScoopLanding
     <img src="/static/images/Birthday_cake.jpeg" alt="">
   </section>
   <!-- Gallery -->
-  <section aria-label="Gallery">
+  <section class="gallery-section" aria-label="Gallery">
     <div class="carousel">
       <button class="carousel-button prev">L</button>
       <button class="carousel-button next">R</button>
-      <div class="carousel-item" data-active>
-        <img src="/static/images/pexels-brigitte-tohm-36757-171255.jpg" alt="">
-        <div class="carousel-caption">
-          <p>Peanuts</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="/static//images//pexels-marc-schulte-656598-1978181.jpg" alt="">
-        <div class="carousel-caption">
-          <p>Trees</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="/static/images/pexels-myersmc16-919273.jpg" alt="">
-        <div class="carousel-caption">
-          <p>Colors</p>
-        </div>
-      </div>
+      <ul>
+        <li class="carousel-item" data-active>
+          <img src="/static/images/pexels-brigitte-tohm-36757-171255.jpg" alt="">
+        </li>
+        <li class="carousel-item">
+          <img src="/static//images//pexels-marc-schulte-656598-1978181.jpg" alt="">
+        </li>
+        <li class="carousel-item">
+          <img src="/static/images/pexels-myersmc16-919273.jpg" alt="">
+        </li>
+      </ul>
     </div>
   </section>
   <!-- Call-to-Action -->
-  <section class="section4">
-    <h2 class="header-blue">Your Next Crunch!</h2>
+  <section class="CTA-section">
+    <!-- <h2 class="header-blue">Your Next Crunch!</h2>
     <p>
       At Waffle N' Scoop, we’re all about combining the warmth of waffles with the cool joy of ice cream. 
       Whether you’re craving a classic cone, a decadent sundae, or our signature waffle bowls, we’ve got something 
       to satisfy every sweet tooth. Made with love and the finest ingredients, every bite is a little piece of happiness. 
       Stop by and discover why we’re the talk of the town!
-    </p>
+    </p> -->
   </section>
 </div>
 {% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/carousel.js')}}"></script>
+{%endblock%}
