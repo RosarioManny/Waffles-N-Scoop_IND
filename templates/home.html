@@ -23,10 +23,10 @@ Waffles N' ScoopLanding
   </section>
   <!-- Gallery -->
   <section class="gallery-section" aria-label="Gallery">
-    <div class="carousel">
-      <button class="carousel-button prev">L</button>
-      <button class="carousel-button next">R</button>
-      <ul>
+    <div class="carousel" data-carousel>
+      <button class="carousel-button prev" data-carousel-button="prev">L</button>
+      <button class="carousel-button next" data-carousel-button="next">R</button>
+      <ul data-slides>
         <li class="carousel-item" data-active>
           <img src="/static/images/pexels-brigitte-tohm-36757-171255.jpg" alt="">
         </li>
@@ -52,5 +52,5 @@ Waffles N' ScoopLanding
 </div>
 {% endblock %}
 {% block javascript %}
-<script src="{{ url_for('static', filename='js/carousel.js')}}"></script>
-{%endblock%}
+<script src="{{ url_for('static', filename='/carousel.js') }}"></script>
+{% endblock %}
