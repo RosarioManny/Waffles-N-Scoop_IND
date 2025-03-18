@@ -1,8 +1,10 @@
 body {
   margin:0;
   height: 100vh;
-  background: azure;
-  background-image: url("../static/images/BG-General.png");
+  font-family:  "Caprasimo", serif;
+  font-weight: 300;
+  /* background: azure; */
+  background-image: url("../static/images/Product_Photos/BG-General.png");
 }
 /* <<<<<<<<<<<<<<< NAV CONTENT >>>>>>>>>>>>>>>>*/
 nav {
@@ -46,11 +48,11 @@ footer {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:  "Caprasimo", serif;
   color: white;
   font-size: 4rem;
   text-shadow: 5px 10px 10px black;
-  -webkit-text-stroke: 3px black;
+  -webkit-text-stroke: 1px black;
 }
 
 .header-pink {
