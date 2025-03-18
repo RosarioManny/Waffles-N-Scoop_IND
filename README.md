@@ -21,6 +21,9 @@ Implement users, sign-in, registration, shopping cart, company feel and transact
 1. CSS
 1. HTML
 
+Extensions:
+Flickity - carosoul
+
 ## MVP:
 
 Registration,
