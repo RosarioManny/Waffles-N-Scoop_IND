@@ -1,12 +1,19 @@
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for, request, session, g
 from flask_session import Session
 from helpers import login_required
+from config import Config
+from models import db
 
 app = Flask(__name__)
+app.config.from_object(Config)
+db.init_app(app)
 
+with app.app_context():
+    db.create_all() 
+    
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-# Session(id(app))
+app.config["DATABASE"] = DATABASE
 
 # Home
 @app.route("/")
