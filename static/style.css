@@ -33,13 +33,14 @@ nav {
 .nav-link:hover,
 .nav-link:focus {
   color: #38DDFF;
+  transition: 200ms ease-in-out;
 }
 
 /* <<<<<<<<<<<<<<< FOOTER CONTENT >>>>>>>>>>>>>>>>*/
 footer {
   display: flex;
   justify-content: space-between;
-  background: pink;
+  background: #FFDFF1;
   padding: 1rem;
 }
 
@@ -63,21 +64,26 @@ footer {
   left: 50%;
   transform: translate(-50%, -50%);
   font-family:  "Caprasimo", serif;
-  color: white;
+  color: #FFFFF6;
   font-size: 4rem;
   text-shadow: 5px 10px 10px black;
-  -webkit-text-stroke: 1px black;
+  -webkit-text-stroke: 1px #332100;
 }
 
 .header-pink {
-  color: pink;
+  color: #FF8DB5;
   text-align: center;
   font-size: 3rem;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
 }
 
 .header-blue {
-  color: aqua;
+  color: #38DDFF;
   text-align: center;
+  font-size: 3rem;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
 }
 
 /* <<<<<<<<<<<<<<< PRODUCT CONTENT >>>>>>>>>>>>>>>>*/
@@ -102,6 +108,7 @@ footer {
   border: 5px solid cornflowerblue;
   height: 60vh;
   object-fit: contain;
+  box-shadow: 0px 7px 7px  rgba(0, 0, 0, .3);
 }
 
 /* <<<<<<<<<<<<<<< GALLERY / CAROUSEL CONTENT >>>>>>>>>>>>>>>>*/
@@ -192,7 +199,7 @@ footer {
   align-items: center;
 }
 .CTA-section p {
-  text-align: center;
+  margin: auto;
   width: 50vw;
 }
 
@@ -209,7 +216,8 @@ footer {
   margin: auto;
   object-fit: cover;
   border-radius: 1rem;
-  border: solid 5px pink;
+  border: solid 5px #FFDFF1;
+  box-shadow: 0px 7px 7px 0 rgba(0, 0, 0, .3);
 }
 
 .origin-text {
@@ -272,4 +280,20 @@ form {
   cursor: pointer;
   font-family: "Caprasimo", serif;
   font-size: 1rem;
+  box-shadow: 0px 5px 2px 0 rgba(0, 0, 0, .3);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #FFDFF1;
+  transition: 200ms ease-in-out;
+}
+
+.plain-text {
+  font-size: 1.3rem;
+  text-align: justify;
+}
+
+.info-p {
+  
 }
