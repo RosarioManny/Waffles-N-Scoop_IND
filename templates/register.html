@@ -5,16 +5,20 @@
 {% endblock %}
 
 {% block main %}
-    <form action="/register" method="post">
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text">
-        </div>
-        <div class="mb-3">
-            <input class="form-control mx-auto w-auto" name="password" placeholder="Password" type="password">
-        </div>
-        <div class="mb-3">
-            <input class="form-control mx-auto w-auto" name="confirmation" placeholder="Confirm password" type="password">
-        </div>
-        <button class="btn btn-primary" type="submit">Register</button>
-    </form>
+  <div class="auth-forms">
+    <h1>Register</h1>
+    <form class="form-container" action="/register" method="post">
+          <div class="input-container username" class="mb-3">
+              <input autocomplete="off" autofocus class="input-fields" name="username" placeholder="Username" type="text">
+          </div>
+          <div class="input-container password" class="mb-3">
+              <input class="input-fields" name="password" placeholder="Password" type="password">
+          </div>
+          <div class="input-container confirm-password" class="mb-3">
+              <input class="input-fields" name="confirmation" placeholder="Confirm password" type="password">
+          </div>
+          <button class="btn btn-primary" type="submit">Register</button>
+      </form>
+      <p>Already have an Account? <a href="/login">Sign-In</a></p>
+  </div>
 {% endblock %}

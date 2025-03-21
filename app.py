@@ -10,10 +10,10 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all() 
-    
+
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-app.config["DATABASE"] = DATABASE
+
 
 # Home
 @app.route("/")

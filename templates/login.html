@@ -5,18 +5,18 @@
 {% endblock %}
 
 {% block main %}
-    <div class="login-container login">
-      <h1>Login</h1>
-      <form class="form-container"action="/login" method="post">
-          <div class="input-container username">
-              <input autocomplete="off" autofocus class="input-fields" name="username" placeholder="Username" type="text">
-          </div>
-          <div class="input-container password">
-              <input class="input-fields" name="password" placeholder="Password" type="password">
-          </div>
-          <button class="" type="submit">Log In</button>
-      </form>
-      <br>
-      <p>Need an Account? <a href="/register"> Register </a></p>
-    </div>
+  <div class="login-container auth-forms">
+    <h1>Login</h1>
+    <form class="form-container"action="/login" method="post">
+        <div class="input-container username">
+            <input autocomplete="off" autofocus class="input-fields" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="input-container password">
+            <input class="input-fields" name="password" placeholder="Password" type="password">
+        </div>
+        <button class="btn-primary" type="submit">Log In</button>
+    </form>
+    <br>
+    <p>Need an Account? <a href="/register"> Register </a></p>
+  </div>
 {% endblock %}
