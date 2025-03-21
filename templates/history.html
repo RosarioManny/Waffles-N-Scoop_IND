@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Waffles N' ScoopLanding
+{% endblock %}
+
+{% block main%}
+<div>
+  <h1>History</h1>
+  <section>
+    <div>
+      {% if not order_history%}
+      <h2>No current History</h2>
+      {%endif%}
+    </div>
+  </section>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
+{% endblock %}
