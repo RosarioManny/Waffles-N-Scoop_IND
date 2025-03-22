@@ -15,11 +15,19 @@
       <div class="nav-logo-container">
         <a href="/"><img class="logo-img"src="../static/images/Product_Photos/Waffle_N_Scoop_logo.png" alt="Logo"></a>
       </div>
+      {% if session["user_id"] %}
+      <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link"href="/about">About</a></li>
+        <li class="nav-item"><a class="nav-link"href="/logout">Sign-out</a></li>
+        <li class="nav-item"><a class="nav-link"href="/cart">Cart</a></li>
+      </ul>
+      {% else %}
       <ul class="nav-list">
         <li class="nav-item"><a class="nav-link"href="/about">About</a></li>
         <li class="nav-item"><a class="nav-link"href="/login">Sign-in</a></li>
         <li class="nav-item"><a class="nav-link"href="/cart">Cart</a></li>
       </ul>
+      {%endif%}
     </div>
   </nav>
   <main>

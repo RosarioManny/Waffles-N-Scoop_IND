@@ -7,6 +7,9 @@
 {% block main %}
   <div class="auth-forms">
     <h1>Register</h1>
+    {% if error%}
+      <p style="color:red;">{{ error }}</p>
+    {%endif%}
     <form class="form-container" action="/register" method="post">
           <div class="input-container username" class="mb-3">
               <input autocomplete="off" autofocus class="input-fields" name="username" placeholder="Username" type="text">

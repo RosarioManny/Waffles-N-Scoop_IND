@@ -2,10 +2,10 @@ CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE,
+    email TEXT UNIQUE,
     cart_id INTEGER,
-    created_at DATETIME,
-    updated_at DATETIME,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (cart_id) REFERENCES cart(id)
 );
 
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS items (
     quantity INT,
     description TEXT,
     category TEXT,
-    updated_at DATETIME
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS transactions (
@@ -25,14 +25,14 @@ CREATE TABLE IF NOT EXISTS transactions (
     date DATE NOT NULL,
     total INT NOT NULL,
     user_id INTEGER,
-    created_at DATETIME,
+    created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS cart (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     owner_id INTEGER UNIQUE,
-    created_at DATETIME,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (owner_id) REFERENCES users(id)
 );
 

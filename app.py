@@ -19,6 +19,7 @@ def init_db():
     db = get_db()
     with app.open_resource('schema.sql', mode='r') as f:
       db.cursor().executescript(f.read())
+      db.row_factory = sqlite3.Row
     db.commit()
 
 # Close database
@@ -31,8 +32,9 @@ def close_connection(exception):
 
 # Home
 @app.route("/")
-def hello_world():
-  return render_template("home.html")
+def index():
+  # user_id = session["user_id"]
+  return render_template("index.html")
 
 # Login
 @app.route("/login", methods=["GET", "POST"])
@@ -43,7 +45,7 @@ def login():
   if request.method == "POST":
     username = request.form.get("username")
     password = request.form.get("password")
-
+    # If fields are empty
     if not request.form.get("username"):
       return render_template("login.html", error="Username is Invalid")
     elif not request.form.get("password"):
@@ -51,11 +53,15 @@ def login():
     
     db = get_db()
     try:
+      user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone() #fetchone() >> returns a single row and turns into a dict
       # Grab the userdata and put into a dict(object)
-      user = db.execute("SELECT * FROM users WHERE username = ?", username).fetchone() #fetchone() >> returns a single row and turns into a dict
+      print(f'LOGGED username: {username}  passwrod: {password}')
     except:
+      print(f'ERROR username: {username} VS DBUN: {user} passwrod: {password}')
       return render_template("login.html", error="Field error, please enter again")
+    # Check if information is valid
     if user and check_password_hash(user["password"], password):
+      print(f'SESSION MADE FOR username: {username} passwrod: {password}')
       session["user_id"] = user["id"]
       return redirect("/")
     else:
@@ -70,6 +76,8 @@ def register():
     username = request.form.get("username")
     password = request.form.get("password")
     conf_pwd = request.form.get("confirmation")
+
+    print(f"Username: {username}, Password: {password}, Confirm Password: {conf_pwd}")
     # Check if field is empty
     if not username or not password or not conf_pwd:
       return ("Invalid Fields", 400)
@@ -78,18 +86,31 @@ def register():
       return ("Passwords do not match", 400)
     hashed_password = generate_password_hash(password)
     db = get_db()
-  
+    print(hashed_password)
+    print(username)
     try:
-      db.execute("INSERT INTO users (username, password) VALUES(?, ?)",username, hashed_password)
+      db.execute("INSERT INTO users (username, password) VALUES(?, ?)",(username, hashed_password))
       db.commit()
-    except sqlite3.IntegrityError:
-      return "Username already taken", 400
-    
+      print(f"User {username} registered successfully")
+    # Error Handling
+    except sqlite3.IntegrityError as e:
+      print(f"IntegrityError: {e}")
+      return render_template("register.html", error="Username already exists")
+    except Exception as e:
+      print(f"Unexpected error: {e}")
+      return render_template("register.html", error="An error occurred. Please try again.")
     # If successful go to login
     return redirect("/login")
   else:
     return render_template("register.html")
 
+# Logout
+@app.route("/logout")
+def logout():
+
+  session.clear()
+
+  return redirect("/")
 # About
 @app.route("/about")
 def about():
