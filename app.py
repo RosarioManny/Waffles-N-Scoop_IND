@@ -1,21 +1,30 @@
-from flask import Flask, render_template, redirect, url_for, request, session, g,
+from flask import Flask, render_template, redirect, url_for, request, session, g
 from flask_session import Session
 from helpers import login_required
 from config import Config
-from models import db
 import sqlite3
+
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config.from_object(Config)
-db.init_app(app)
 
-with app.app_context():
-    db.create_all() 
+DATABASE = '/path/to/database.db'
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-
 
 # Home
 @app.route("/")
