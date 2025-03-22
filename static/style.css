@@ -270,6 +270,44 @@ form {
   display: flex;
   align-items: center;
 }
+
+/* <<<<<<<<<<<<<<< PROFILE CONTENT >>>>>>>>>>>>>>>>*/
+.profile-section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15% auto;
+  color: #332100;
+}
+.profile-section-container h1 {
+  font-size: 2rem;
+}
+
+.profile-form-b-container {
+  display:flex;
+  justify-content: space-between;
+}
+.form-container {
+  background-color: #FFF5E2;
+  padding: 5rem;
+  width: 50vw;
+  border-radius: 1rem;
+}
+.profile-fields {
+  border: none;
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: #E7D8BA;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 15vw;
+}
+
+.profile-fields::placeholder {
+  font-family: "Caprasimo", serif;
+  font-size: 1rem;
+  color:#332100;
+}
+
 /* <<<<<<<<<<<<<<< SMALL COMPONENTS CONTENT >>>>>>>>>>>>>>>>*/
 .btn-primary {
   background-color: #38DDFF;

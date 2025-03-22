@@ -5,17 +5,19 @@ Waffles N' ScoopLanding
 {% endblock %}
 
 {% block main%}
-<div>
+<section class="profile-section-container">
   <h1>Profile</h1>
-  <section>
-      <div>
-        <p>Name</p>
-        <p>Email</p>
-        <p>Change Password?</p>
-        <p>Card Number</p>
+    <form class="form-container" action="/profile" method="post">
+      <div class="profile-form-t-container">
+        <input autocomplete="off" autofocus class="profile-fields" name="name" placeholder="Name" type="text" required>
+        <input class="profile-fields" name="email" placeholder="Email" type="email" required>
+        <input class="profile-fields" name="card" placeholder="Card Number ###" type="card" required>
       </div>
-      <div>
+      <div class="profile-form-b-container">
+        <button class="btn-primary" type="submit">Edit Profile</button>
+        <p>Id: ###</p>
       </div>
-  </section>
-</div>
+    </form>
+ 
+</section>
 {% endblock %}

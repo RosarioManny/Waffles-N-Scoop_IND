@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-  <div class="login-container auth-forms">
+  <section class="login-container auth-forms">
     <h1>Login</h1>
     {% if error%}
       <p style="color:red;">{{ error }}</p>
@@ -21,5 +21,5 @@
     </form>
     <br>
     <p>Need an Account? <a href="/register"> Register </a></p>
-  </div>
+  </section>
 {% endblock %}
