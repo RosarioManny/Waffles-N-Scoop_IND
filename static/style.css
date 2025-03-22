@@ -19,7 +19,7 @@ nav {
   align-items: center;
   list-style-type: none;
   margin: 1rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .nav-container {
     display: flex;
@@ -29,6 +29,7 @@ nav {
 .nav-link {
   text-decoration: none;
   color:#332100;
+  cursor: pointer;
 }
 .nav-link:hover,
 .nav-link:focus {
@@ -294,6 +295,19 @@ form {
   text-align: justify;
 }
 
-.info-p {
-  
+.svg-icon {
+  height: 4vh;
+  width: 4vw;
+  background: #DAFFFF;
+  border-radius: .5rem;
+  padding: 3px;
+  border: solid .15rem #332100;
+  cursor: pointer;
 }
+
+.svg-icon:hover,
+.svg-icon:focus {
+  background: #38DDFF;
+  transition: 200ms ease-in-out;
+}
+

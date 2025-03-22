@@ -86,12 +86,10 @@ def register():
       return ("Passwords do not match", 400)
     hashed_password = generate_password_hash(password)
     db = get_db()
-    print(hashed_password)
-    print(username)
+
     try:
       db.execute("INSERT INTO users (username, password) VALUES(?, ?)",(username, hashed_password))
       db.commit()
-      print(f"User {username} registered successfully")
     # Error Handling
     except sqlite3.IntegrityError as e:
       print(f"IntegrityError: {e}")
@@ -132,3 +130,7 @@ def profile():
 @login_required
 def history():
   return render_template("history.html")
+
+@app.route("/shop")
+def shop():
+  return render_template("shop.html")
