@@ -368,12 +368,26 @@ form {
 
 /* <<<<<<<<<<<<<<< SHOP / PRODUCT CONTENT >>>>>>>>>>>>>>>>*/
 
+.all-product-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 90vw;
+  list-style-type: none;
+}
+
 .full-product-container {
   display: flex;
-  justify-content: center;
+  gap: 1.3rem;
+  margin: .7rem;
 }
+
 .product-image {
   width: 150px;
-  height: 200px;
+  height: 275px;
   border-radius: 4rem;
+}
+.product-info-container {
+  width: 20vw;
+  background: #E7D8BA;
+  padding: 1rem;
 }
