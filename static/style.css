@@ -9,6 +9,10 @@ body {
 html {
   margin: 0;
 }
+
+textarea {
+  resize: none;
+}
 /* <<<<<<<<<<<<<<< NAV CONTENT >>>>>>>>>>>>>>>>*/
 nav {
   box-shadow: 0px 10px 10px 0 rgba(0, 0, 0, .3);
@@ -283,19 +287,31 @@ form {
   font-size: 2rem;
 }
 
-.profile-form-b-container {
+.profile-form-t-container {
   display:flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-content: space-between;
 }
-.form-container {
+.profile-form-b-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+}
+.profile-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   background-color: #FFF5E2;
   padding: 5rem;
-  width: 50vw;
+  width: 40vw;
   border-radius: 1rem;
 }
+
 .profile-fields {
   border: none;
   padding: 1rem;
+  margin: 1rem 0 ;
   border-radius: 2rem;
   background-color: #E7D8BA;
   font-family: Arial, Helvetica, sans-serif;
@@ -325,6 +341,7 @@ form {
 .btn-primary:hover,
 .btn-primary:focus {
   background-color: #FFDFF1;
+  color: #332100;
   transition: 200ms ease-in-out;
 }
 

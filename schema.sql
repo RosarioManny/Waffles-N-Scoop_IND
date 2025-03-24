@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS users (
     name TEXT, 
     password TEXT NOT NULL,
     email TEXT UNIQUE,
+    description TEXT,
     cart_id INTEGER,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -38,9 +39,9 @@ CREATE TABLE IF NOT EXISTS cart (
 );
 
 INSERT INTO items (name, image, price, quantity, description, category, updated_at) VALUES
-('Birthday Cake Confetti', 'birthday_cake_confetti.jpg', 15, 120, 'Colorful confetti cake flavor for celebrations!','ice-cream', datetime('now')),
-('Chocolate Moose', 'chocolate_moose.jpg', 11, 200, 'Rich and creamy chocolate ice cream.','ice-cream', datetime('now')),
-('French Cinnamon Vanilla', 'french_cinnamon_vanilla.jpg', 11, 150, 'A French twist on classic vanilla with a hint of cinnamon.','ice-cream', datetime('now')),
+('Birthday Cake Confetti', '/Birthday_cake.jpg', 15, 120, 'Colorful confetti cake flavor for celebrations!','ice-cream', datetime('now')),
+('Chocolate Moose', '/Chocolate-Moose.jpeg', 11, 200, 'Rich and creamy chocolate ice cream.','ice-cream', datetime('now')),
+('French Cinnamon Vanilla', '/French-Cinnamon-Vanilla.jpeg', 11, 150, 'A French twist on classic vanilla with a hint of cinnamon.','ice-cream', datetime('now')),
 ('Matcha Pistachio', 'matcha_pistachio.jpg', 15, 100, 'A unique blend of matcha green tea and roasted pistachio.','ice-cream', datetime('now')),
 ('Cookies''N''Cream', 'cookies_n_cream.jpg', 13, 250, 'Classic cookies and cream flavor with crunchy cookie bits.','ice-cream', datetime('now')),
 ('Classic Sweet Strawberry', 'classic_sweet_strawberry.jpg', 111, 80, 'Sweet and tangy strawberry ice cream made with real strawberries.','ice-cream', datetime('now')),
