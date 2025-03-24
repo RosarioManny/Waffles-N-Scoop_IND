@@ -8,12 +8,18 @@ Waffles N' Scoop Landing
 <div>
   <h1>Shop</h1>
   <section>
+    <form action="/shop" method="post"></form>
       <ul>
-        <li>chocolate</li>
-        <li>Vanilla</li>
-        <li>Coffee</li>
-        <li>Matcha</li>
-        <li>Strawberry</li>
+        {% for i in range(ice_creams|length) %}
+        <li class="full-product-container">
+          <img class="product-image"src="/static/images/Product_Photos/{{ice_creams[i].image}}" alt="">
+          <div class="product-info-container">
+            <h3 class="product-title"> {{ ice_creams[i].name}} </h3>
+            <p class="product-desc"> {{ice_creams[i].description}}</p>
+            <p class="product-price">{{ ice_creams[i].price }}</p>
+          </div>
+        </li>
+        {% endfor%}
       </ul>
   </section>
 </div>

@@ -29,7 +29,6 @@ def close_connection(exception):
   if db is not None:
     db.close()
 
-
 # Home
 @app.route("/")
 def index():
@@ -41,7 +40,7 @@ def index():
 def login():
   # Clears the current session
   session.clear()
-
+  # POST
   if request.method == "POST":
     username = request.form.get("username")
     password = request.form.get("password")
@@ -66,8 +65,9 @@ def login():
       return redirect("/")
     else:
       return render_template("login.html", error="Invalid password or username")
-
-  return render_template("login.html")
+  # GET 
+  else:
+    return render_template("login.html")
 
 # Register
 @app.route("/register", methods=["GET", "POST"])
@@ -105,10 +105,9 @@ def register():
 # Logout
 @app.route("/logout")
 def logout():
-
   session.clear()
-
   return redirect("/")
+
 # About
 @app.route("/about")
 def about():
@@ -133,4 +132,16 @@ def history():
 
 @app.route("/shop")
 def shop():
-  return render_template("shop.html")
+  if request.method == "POST":
+    print("HELLO")
+  else:
+    user_id = session['user_id']
+    db = get_db()
+    #  Get all items
+    fetch_ice_cream = db.execute("SELECT * FROM items WHERE category = 'ice_cream'")
+    fetch_merch = db.execute("SELECT * FROM items WHERE category = 'merchandise'")
+    fetch_food = db.execute("SELECT * FROM items WHERE category = 'food'")
+    ALL_ice_creams = fetch_ice_cream.fetchall()
+    ALL_merch = fetch_merch.fetchall()
+    ALL_food = fetch_food.fetchall()
+    return render_template("shop.html", ice_creams=ALL_ice_creams, merch=ALL_merch, foods=ALL_food) 

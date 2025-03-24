@@ -49,7 +49,7 @@ footer {
   padding: 1rem;
 }
 
-/* <<<<<<<<<<<<<<< HEADER CONTENT >>>>>>>>>>>>>>>>*/
+/* <<<<<<<<<<<<<<< HOME - HEADER CONTENT >>>>>>>>>>>>>>>>*/
 .header-section {
   position: relative;
   text-align: center;
@@ -91,7 +91,7 @@ footer {
   text-underline-offset: 1rem;
 }
 
-/* <<<<<<<<<<<<<<< PRODUCT CONTENT >>>>>>>>>>>>>>>>*/
+/* <<<<<<<<<<<<<<< HOME - PRODUCT CONTENT >>>>>>>>>>>>>>>>*/
 
 .product-section {
   display: flex;
@@ -195,7 +195,7 @@ footer {
 .carousel-button.next {
   right: 26%;
 }
-/* <<<<<<<<<<<<<<< CTA CONTENT >>>>>>>>>>>>>>>>*/
+/* <<<<<<<<<<<<<<< HOME - CTA CONTENT >>>>>>>>>>>>>>>>*/
 
 .CTA-section {
   padding: 5rem 0;
@@ -208,7 +208,7 @@ footer {
   width: 50vw;
 }
 
-/* <<<<<<<<<<<<<<< CTA CONTENT >>>>>>>>>>>>>>>>*/
+/* <<<<<<<<<<<<<<< ABOUT CONTENT >>>>>>>>>>>>>>>>*/
 .origin-section {
   padding: 5rem 0;
   display: flex;
@@ -236,14 +236,14 @@ footer {
 }
 /* <<<<<<<<<<<<<<< LOGIN CONTENT >>>>>>>>>>>>>>>>*/
 
-.auth-forms {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 8rem 0;
   color: #332100;
 }
-.auth-forms h1 {
+.container h1 {
   font-size: 2rem;
 }
 
@@ -366,3 +366,14 @@ form {
   transition: 200ms ease-in-out;
 }
 
+/* <<<<<<<<<<<<<<< SHOP / PRODUCT CONTENT >>>>>>>>>>>>>>>>*/
+
+.full-product-container {
+  display: flex;
+  justify-content: center;
+}
+.product-image {
+  width: 150px;
+  height: 200px;
+  border-radius: 4rem;
+}
