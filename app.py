@@ -114,7 +114,7 @@ def about():
   return render_template("about.html")
 
 # Cart
-@app.route("/cart")
+@app.route("/cart", methods=["GET", "POST"])
 def cart():
   if request.method == "POST":
     data = request.get_json()
@@ -142,10 +142,30 @@ def cart():
     return render_template("cart.html")
 
 # Profile
-@app.route("/profile")
+@app.route("/profile", methods=["GET", "POST"])
 @login_required
 def profile():
-  return render_template("profile.html")
+  if request.method == "POST":
+    user_id = session["user_id"]
+    name = request.form.get("name")
+    email = request.form.get("email")
+    user_description = request.form.get("user_description")
+    db = get_db()
+    print(email)
+    print(name)
+    print(user_description)
+    db.execute(
+      "UPDATE users SET name = ?, email = ?, description = ? WHERE id = ?", 
+      (name, email, user_description,  user_id)
+    )
+    db.commit()
+    return render_template("profile.html", name=name, email=email, user_description=user_description)
+  else:
+    user_id = session["user_id"]
+    db = get_db()
+    user = db.execute("SELECT name, email, description FROM users WHERE id = ?", (user_id,)).fetchone()
+    print(user)
+    return render_template("profile.html", name=user["name"], email=user["email"], description=user["description"] )
 
 # History
 @app.route("/history")
@@ -153,7 +173,7 @@ def profile():
 def history():
   return render_template("history.html")
 
-@app.route("/shop")
+@app.route("/shop", methods=["GET", "POST"])
 def shop():
   if request.method == "POST":
     print("HELLO")
