@@ -21,10 +21,10 @@ Waffles N' Scoop - Edit Profile
         <input autocomplete="off" autofocus class="profile-fields" name="email" placeholder='{{ email }}' type="text" value="{{ email }}" >
         {% endif %}
         <!-- DESCRIPTION -->
-        {% if not user_description %}
+        {% if not description %}
         <textarea class="profile-fields text-fields" name="user_description" placeholder="About You" type="text" rows="5" cols="10"></textarea>
         {% else %}
-        <textarea class="profile-fields text-fields" name="user_description" placeholder="{{ user_description }}" value="{{ user_description }}"type="text" rows="10" cols="15"></textarea>
+        <textarea class="profile-fields text-fields" name="user_description" value="{{ description }}"type="text" rows="10" cols="15">{{ description }} </textarea>
         {% endif %}
       </div>
       <div class="profile-form-b-container">
@@ -33,8 +33,8 @@ Waffles N' Scoop - Edit Profile
         {%else %}
         <p>Id: ###</p>
         {%endif%}
-        <button class="btn-primary" type="submit">Confirm Edits</button>
-      </form>
-    </div>
+      <button class="btn-primary" type="submit">Confirm Edits</button>
+      </div>
+    </form>
 </section>
 {% endblock %}

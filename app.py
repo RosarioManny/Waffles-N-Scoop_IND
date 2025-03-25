@@ -142,7 +142,7 @@ def cart():
     return render_template("cart.html")
 
 # Profile
-@app.route("/profile", methods=["GET"])
+@app.route("/profile")
 @login_required
 def profile():
   user_id = session["user_id"]
@@ -151,6 +151,7 @@ def profile():
   print(user)
   return render_template("profile.html", user_id=user_id, name=user["name"], email=user["email"], description=user["description"] )
 
+# Edit profile
 @app.route("/edit-profile", methods=["GET", "POST"])
 @login_required
 def edit_profile():
@@ -168,7 +169,8 @@ def edit_profile():
       (name, email, user_description,  user_id)
     )
     db.commit()
-    return render_template("profile.html", name=name, email=email, user_description=user_description)
+    return redirect("/profile")
+    # return render_template("edit_profile.html", name=name, email=email, description=user_description)
   else:
     user_id = session["user_id"]
     db = get_db()

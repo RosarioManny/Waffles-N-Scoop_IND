@@ -256,7 +256,6 @@ footer {
   margin: 10px;
 }
 .input-fields {
-  
   border: none;
   padding: 1rem;
   border-radius: 2rem;
@@ -264,8 +263,7 @@ footer {
   font-family: Arial, Helvetica, sans-serif;
   width: 15vw;
 }
-.input-fields::placeholder,
-.input-fields::value {
+.input-fields::placeholder {
   font-family: "Caprasimo", serif;
   font-size: 1rem;
   color:#E7D8BA;
@@ -315,15 +313,15 @@ form {
   margin: 1rem 0 ;
   border-radius: 2rem;
   background-color: #E7D8BA;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Caprasimo", serif;
   width: 15vw;
 }
 
-.profile-fields::placeholder {
+/* .profile-fields::placeholder {
   font-family: "Caprasimo", serif;
   font-size: 1rem;
   color:#332100;
-}
+} */
 
 /* <<<<<<<<<<<<<<< SMALL COMPONENTS CONTENT >>>>>>>>>>>>>>>>*/
 .btn-primary {

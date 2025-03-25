@@ -10,26 +10,26 @@ Waffles N' ScoopLanding
     <div class="profile-container">
       <div class="profile-form-t-container">
         {% if not name %}
-        <p aria-placeholder="Name"></p>
+        <p class="profile-fields profile-name"></p>
         {% else %}
-        <p>{{ name }}</p>
+        <p class="profile-fields profile-name">{{ name }}</p>
         {% endif %}
         <!-- EMAIL -->
         {% if not email %}
-        <p aria-placeholder="Email"></p>
+        <p class="profile-fields profile-name" ></p>
         {% else %}
-        <p>{{email}}</p>
+        <p class="profile-fields profile-name" >{{email}}</p>
         {% endif %}
         <!-- DESCRIPTION -->
-        {% if not user_description %}
-        <p aria-placeholder="About You"> </p>
+        {% if not description %}
+        <p class="profile-fields profile-name">About You </p>
         {% else %}
-        <p> {{user_description}}</p>
+        <p class="profile-fields profile-name"> {{ description }}</p>
         {% endif %}
       </div>
       <div class="profile-form-b-container">
-        {% if user_id%}
-        <p>Id: #{{ user_id}}</p>
+        {% if user_id %}
+        <p>Id: #{{ user_id }}</p>
         {%else %}
         <p>Id: ###</p>
         {%endif%}
