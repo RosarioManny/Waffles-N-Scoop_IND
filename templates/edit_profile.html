@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Waffles N' Scoop - Edit Profile
+{% endblock %}
+
+{% block main%}
+<section class="container">
+  <h1>Edit Profile</h1>
+    <form class="profile-container" action="/edit-profile" method="post">
+      <div class="profile-form-t-container">
+        {% if not name %}
+        <input autocomplete="off" autofocus class="profile-fields" name="name" placeholder='Name' type="text" >
+        {% else %}
+        <input autocomplete="off" autofocus class="profile-fields text-fields" name="name" placeholder='{{ name }}' type="text" value="{{ name }}" >
+        {% endif %}
+        <!-- EMAIL -->
+        {% if not email %}
+        <input autocomplete="off" autofocus class="profile-fields" name="email" placeholder='Email' type="text" >
+        {% else %}
+        <input autocomplete="off" autofocus class="profile-fields" name="email" placeholder='{{ email }}' type="text" value="{{ email }}" >
+        {% endif %}
+        <!-- DESCRIPTION -->
+        {% if not user_description %}
+        <textarea class="profile-fields text-fields" name="user_description" placeholder="About You" type="text" rows="5" cols="10"></textarea>
+        {% else %}
+        <textarea class="profile-fields text-fields" name="user_description" placeholder="{{ user_description }}" value="{{ user_description }}"type="text" rows="10" cols="15"></textarea>
+        {% endif %}
+      </div>
+      <div class="profile-form-b-container">
+        {% if user_id%}
+        <p>Id: #{{ user_id}}</p>
+        {%else %}
+        <p>Id: ###</p>
+        {%endif%}
+        <button class="btn-primary" type="submit">Confirm Edits</button>
+      </form>
+    </div>
+</section>
+{% endblock %}

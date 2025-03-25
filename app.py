@@ -142,9 +142,18 @@ def cart():
     return render_template("cart.html")
 
 # Profile
-@app.route("/profile", methods=["GET", "POST"])
+@app.route("/profile", methods=["GET"])
 @login_required
 def profile():
+  user_id = session["user_id"]
+  db = get_db()
+  user = db.execute("SELECT name, email, description FROM users WHERE id = ?", (user_id,)).fetchone()
+  print(user)
+  return render_template("profile.html", user_id=user_id, name=user["name"], email=user["email"], description=user["description"] )
+
+@app.route("/edit-profile", methods=["GET", "POST"])
+@login_required
+def edit_profile():
   if request.method == "POST":
     user_id = session["user_id"]
     name = request.form.get("name")
@@ -165,7 +174,7 @@ def profile():
     db = get_db()
     user = db.execute("SELECT name, email, description FROM users WHERE id = ?", (user_id,)).fetchone()
     print(user)
-    return render_template("profile.html", name=user["name"], email=user["email"], description=user["description"] )
+    return render_template("edit_profile.html", user_id=user_id, name=user["name"], email=user["email"], description=user["description"] )
 
 # History
 @app.route("/history")
