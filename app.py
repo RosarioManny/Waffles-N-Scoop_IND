@@ -117,27 +117,39 @@ def about():
 @app.route("/cart", methods=["GET", "POST"])
 def cart():
   if request.method == "POST":
-    data = request.get_json()
-    product_id = data["product_id"]
-    user_id = session['user_id']
-    db = get_db
-    print(user_id)
-    # IF SIGNEED IN / USERS
-    if user_id:
-      
-      cart = db.execute("SELECT id FROM cart WHERE owner_id = ?", user_id).fetchone()
-      # CREATE CART IF NONE
-      if not cart:
-        db.execute("INSERT INTO cart (owner_id) VALUES (?)", user_id)
-        cart_id = db.lastrowid
-      # GET CART 
-      else:
-        cart_id = cart["id"]
-      print(cart_id)
-      item_in_cart = db.execute("SELECT quantity, ")
-    # FOR GUEST
-    else:
-      print("Hello")
+    try:
+      data = request.get_json()
+      product_id = data["product_id"]
+      user_id = session['user_id']
+      print("DATA", product_id)
+      db = get_db()
+      # IF SIGNEED IN / USERS
+      if user_id:
+        # Locate Cart
+        cart = db.execute("SELECT id FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
+        print("CARTId", {cart["id"]})
+        # CREATE CART IF NONE
+        if not cart:
+          db.execute("INSERT INTO cart (owner_id) VALUES (?)", (user_id,))
+          cart = db.execute("SELECT * FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
+          cart_id = cart["id"]
+          print("CARTID MAKE", cart_id)
+        # GET CART ID
+        else:
+          print("ALREADY ONE")
+          print("CARTId", {cart["id"]} )
+          print("OWNER ", {cart["owner_id"]})
+          cart_id = cart["id"]
+        # ADD TO CART 
+        db.execute(
+          "INSERT INTO cart_items (cart_id, product_id) VALUES (?, ?)", 
+          (cart_id, product_id)
+        )
+        db.commit()
+
+        return jsonify({"success": True, "cart_id": cart_id})
+    except Exception as e:
+      return jsonify({"DERROR": str(e)}), 500
   else:
     return render_template("cart.html")
 
@@ -198,6 +210,5 @@ def shop():
     ALL_ice_creams = fetch_ice_cream.fetchall()
     ALL_merch = fetch_merch.fetchall()
     ALL_food = fetch_food.fetchall()
-
 
     return render_template("shop.html", ice_creams=ALL_ice_creams, merch=ALL_merch, foods=ALL_food) 
