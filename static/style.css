@@ -240,7 +240,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 8rem 0;
+  margin: 3rem 0 10rem 0;
   color: #332100;
 }
 .container h1 {
@@ -371,10 +371,10 @@ form {
 .all-product-container {
   display: flex;
   flex-flow: row wrap;
-  width: 90vw;
+  justify-content: center;
   list-style-type: none;
+  padding: 0;
 }
-
 .full-product-container {
   display: flex;
   gap: 1.3rem;
@@ -385,9 +385,55 @@ form {
   width: 150px;
   height: 275px;
   border-radius: 4rem;
+  border: solid 3px #E7D8BA
 }
 .product-info-container {
-  width: 20vw;
-  background: #E7D8BA;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 220px;
+  width: 21vw;
+  background: #FFF5E2;
+  border: solid 3px #E7D8BA;
+  padding:  0 1rem;
+  border-radius: 1rem;
+}
+.shop-container h3 {
+  font-size: 1.4rem;
+  text-decoration: underline;
+}
+.product-info-container form{
+  margin: .3rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-desc {
+  font-family: "Caprasimo";
+  font-weight: 100;
+  font-size: 1rem;
+  margin: 0;
+  color: #553E13;
+}
+.product-price {
+  display: flex;
+  margin: .4rem 0;
+  justify-content: flex-end;
+}
+
+.add-product-btn {
+  font-family: "Caprasimo";
+  width: 2rem;
+  height: 2rem;
+  background: #FF8DB5;
+  border-radius: 1rem;
+  border: solid 2px  #553E13;
+}
+
+.add-product-btn:hover,
+.add-product-btn:focus {
+  transition: 200ms ease-in-out;
+  background: #38DDFF;
+  cursor: pointer;
+
 }

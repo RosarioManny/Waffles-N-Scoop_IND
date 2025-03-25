@@ -44,7 +44,7 @@ INSERT INTO items (name, image, price, quantity, description, category, updated_
 ('French Cinnamon Vanilla', '/French-Cinnamon-Vanilla.jpeg', 11, 150, 'A French twist on classic vanilla with a hint of cinnamon.','ice_cream', datetime('now')),
 ('Matcha Pistachio', '/Matcha-Pistachio.jpeg', 15, 100, 'A unique blend of matcha green tea and roasted pistachio.','ice_cream', datetime('now')),
 ('Cookies''N''Cream', '/Cookies-N-Cream.jpeg', 13, 250, 'Classic cookies and cream flavor with crunchy cookie bits.','ice_cream', datetime('now')),
-('Classic Sweet Strawberry', '/Classic-Strawberry.jpeg', 111, 80, 'Sweet and tangy strawberry ice cream made with real strawberries.','ice_cream', datetime('now')),
+('Classic Sweet Strawberry', '/Classic-Strawberry.jpeg', 11, 80, 'Sweet and tangy strawberry ice cream made with real strawberries.','ice_cream', datetime('now')),
 ('Raspberry Sorbet', '/Raspberry-Sorbet.jpeg', 13, 180, 'Refreshing raspberry sorbet, perfect for a light treat.','ice_cream', datetime('now')),
 ('Black Currant Sorbet', '/Black-currant-Sorbet.jpeg', 13, 170, 'Tart and tangy black currant sorbet.','ice_cream', datetime('now')),
 ('Coffee Javachip', '/Coffee-Javachip.jpeg', 15, 140, 'Bold coffee flavor with rich chocolate chips.','ice_cream', datetime('now')),

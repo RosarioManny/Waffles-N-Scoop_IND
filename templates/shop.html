@@ -5,21 +5,26 @@ Waffles N' Scoop Landing
 {% endblock %}
 
 {% block main%}
-<div class="container">
+<div class="container shop-container">
   <h1>Shop</h1>
-      <ul class="all-product-container">
-        {% for i in range(ice_creams|length) %}
-        <div class="full-product-container">
-          <img class="product-image"src="/static/images/Product_Photos/{{ice_creams[i].image}}" alt="">
-          <li >
-            <div class="product-info-container">
-              <h3 class="product-title"> {{ ice_creams[i].name}} </h3>
-              <p class="product-desc"> {{ice_creams[i].description}}</p>
+    <ul class="all-product-container">
+      {% for i in range(ice_creams|length) %}
+      <div class="full-product-container">
+        <img class="product-image"src="/static/images/Product_Photos/{{ice_creams[i].image}}" alt="" />
+        <li >
+          <div class="product-info-container">
+            <h3 class="product-title"> {{ ice_creams[i].name}} </h3>
+            <p class="product-desc"> {{ice_creams[i].description}}</p>
+            <form action="/cart" method="post">
+              <input type="hidden" name="product_id" value="{{ ice_creams[i].id }}">
               <p class="product-price">{{ ice_creams[i].price }}</p>
-            </div>
-          </li>
-        </div>
-        {% endfor%}
-      </ul>
+              <button class="add-product-btn" type="submit">+</button type="submit">
+            </form>
+          </div>
+        </li>
+      </div>
+      {% endfor%}
+    </ul>
+    <p><a href="/cart">View Cart</a></p>
 </div>
 {% endblock %}
