@@ -144,4 +144,5 @@ def shop():
     ALL_ice_creams = fetch_ice_cream.fetchall()
     ALL_merch = fetch_merch.fetchall()
     ALL_food = fetch_food.fetchall()
+    
     return render_template("shop.html", ice_creams=ALL_ice_creams, merch=ALL_merch, foods=ALL_food) 

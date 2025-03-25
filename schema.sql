@@ -49,9 +49,9 @@ INSERT INTO items (name, image, price, quantity, description, category, updated_
 ('Black Currant Sorbet', '/Black-currant-Sorbet.jpeg', 13, 170, 'Tart and tangy black currant sorbet.','ice_cream', datetime('now')),
 ('Coffee Javachip', '/Coffee-Javachip.jpeg', 15, 140, 'Bold coffee flavor with rich chocolate chips.','ice_cream', datetime('now')),
 ('Cotton Candy Blitz', '/Cotton-Candy-Blitz.jpeg', 13, 160, 'Fun and whimsical cotton candy flavor.','ice_cream', datetime('now')),
-('Original Waffle Cones (4 Pack)', 'waffle_cone_4pack.jpg', 15, 300, 'A pack of 4 crispy, original waffle cones.', 'food', datetime('now')),
-('Sugar Cones (8 Pack)', 'sugar_cones_8pack.jpg', 9, 300, 'A pack of 8 classic sugar cones.', 'food', datetime('now')),
-('Original Waffle Bowls (2 Pack)', 'waffle_bowls_2pack.jpg', 12, 250, 'A pack of 2 original waffle bowls.', 'food', datetime('now')),
-('Waffle''N''Scoop Tote', 'waffle_scoop_tote.jpg', 20, 100, 'Stylish tote bag for carrying your ice cream essentials.', 'merchandise', datetime('now')),
-('Waffle''N''Scoop Hat', 'waffle_scoop_hat.jpg', 20, 90, 'Comfortable hat with the Waffle''N''Scoop logo.', 'merchandise', datetime('now')),
-('Waffle''N''Scoop T-Shirt', 'waffle_scoop_tshirt.jpg', 30, 70, 'Soft and stylish t-shirt featuring the Waffle''N''Scoop brand.', 'merchandise', datetime('now'));
+('Original Waffle Cones (4 Pack)', '/WNS_OG_waffle_cone.jpg', 15, 300, 'A pack of 4 crispy, original waffle cones.', 'food', datetime('now')),
+('Sugar Cones (8 Pack)', '/WNS_sugar_cone.jpg', 9, 300, 'A pack of 8 classic sugar cones.', 'food', datetime('now')),
+('Original Waffle Bowls (2 Pack)', '/WNS_waffle_bowl.jpg', 12, 250, 'A pack of 2 original waffle bowls.', 'food', datetime('now')),
+('Waffle''N''Scoop Tote', '/WNS-Tote-Bag.png', 20, 100, 'Stylish tote bag for carrying your ice cream essentials.', 'merchandise', datetime('now')),
+('Waffle''N''Scoop Hat', '/WNS-Snap-Back-Hat.png', 20, 90, 'Comfortable hat with the Waffle''N''Scoop logo.', 'merchandise', datetime('now')),
+('Waffle''N''Scoop T-Shirt', '/WNS-T-shirt.png', 30, 70, 'Soft and stylish t-shirt featuring the Waffle''N''Scoop brand.', 'merchandise', datetime('now'));
