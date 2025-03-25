@@ -22,15 +22,6 @@ CREATE TABLE IF NOT EXISTS items (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS transactions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    date DATE NOT NULL,
-    total INT NOT NULL,
-    user_id INTEGER,
-    created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
 CREATE TABLE IF NOT EXISTS cart (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     owner_id INTEGER UNIQUE,
@@ -38,6 +29,31 @@ CREATE TABLE IF NOT EXISTS cart (
     FOREIGN KEY (owner_id) REFERENCES users(id)
 );
 
+CREATE TABLE IF NOT EXISTS cart_items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    cart_id INTEGER,          -- Links to `cart.id`
+    product_id INTEGER,       -- Links to `products.id`
+    added_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (cart_id) REFERENCES cart(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    order_total DECIMAL(10, 2),
+    user_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS order_items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    order_id INTEGER,
+    product_id INTEGER,
+    quantity INTEGER,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
 INSERT INTO items (name, image, price, quantity, description, category, updated_at) VALUES
 ('Birthday Cake Confetti', '/Birthday_cake.jpeg', 15, 120, 'Colorful confetti cake flavor for celebrations!','ice_cream', datetime('now')),
 ('Chocolate Moose', '/Chocolate-Moose.jpeg', 11, 200, 'Rich and creamy chocolate ice cream.','ice_cream', datetime('now')),
