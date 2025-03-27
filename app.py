@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, session, g, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
-from helpers import login_required, get_db
+from helpers import login_required, get_db, remove_cart_item
 from flask_session import Session
 from config import Config
 import sqlite3
@@ -116,43 +116,85 @@ def about():
 # Cart
 @app.route("/cart", methods=["GET", "POST"])
 def cart():
+
+  # EDIT ITEMS IN CART 
   if request.method == "POST":
-    try:
-      data = request.get_json()
-      product_id = data["product_id"]
-      user_id = session['user_id']
-      print("DATA", product_id)
-      db = get_db()
-      # IF SIGNEED IN / USERS
-      if user_id:
-        # Locate Cart
-        cart = db.execute("SELECT id FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
-        print("CARTId", {cart["id"]})
-        # CREATE CART IF NONE
-        if not cart:
-          db.execute("INSERT INTO cart (owner_id) VALUES (?)", (user_id,))
-          cart = db.execute("SELECT * FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
-          cart_id = cart["id"]
-          print("CARTID MAKE", cart_id)
-        # GET CART ID
-        else:
-          print("ALREADY ONE")
-          print("CARTId", {cart["id"]} )
-          print("OWNER ", {cart["owner_id"]})
-          cart_id = cart["id"]
-        # ADD TO CART 
-        db.execute(
-          "INSERT INTO cart_items (cart_id, product_id) VALUES (?, ?)", 
-          (cart_id, product_id)
-        )
-        db.commit()
-
-        return jsonify({"success": True, "cart_id": cart_id})
-    except Exception as e:
-      return jsonify({"DERROR": str(e)}), 500
+    print("HELLO")
+  # GET ROUTE - SHOW ITEMS IN CART
   else:
-    return render_template("cart.html")
+    user_id = session["user_id"]
+    db = get_db()
+    
+    if user_id:
+      cart = db.execute("SELECT id, owner_id FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
+      print(dict(cart))
+      cart_id = cart["id"]
+      current_cart_items = db.execute(
+        """
+        SELECT items.image, items.id, items.name, items.price, COUNT(*) as quantity 
+        FROM items 
+        JOIN cart_items AS CI 
+        ON items.id = CI.product_id 
+        WHERE CI.cart_id = ? 
+        GROUP BY items.id
+        """, (cart_id,)
+        ).fetchall()
+      
+      cart_total = 0
+      for item in current_cart_items:
+        print(dict(item))
+        cart_total += (item["price"] * item["quantity"])
+      print(cart_total)
+      tax = 0.08
+      tax_amount = round(tax * cart_total, 2)
+      # print(f'CARTID >> {cart["id"], } USER >> {cart["owner_id"]}')
+    return render_template("cart.html", cart_items=current_cart_items, cart_total=cart_total, tax=tax_amount, tax_p=tax)
 
+# REMOVE ITEM FROM CART
+@app.route("/cart/remove", methods=["DELETE"])
+@login_required
+def remove_cart():
+  if request.method == "DELETE":
+    data = request.get_json()
+    product_id = data.get("product_id")
+    try:
+        user_id = session["user_id"]
+        db = get_db()
+
+        # Get the user's cart
+        cart = db.execute("SELECT id FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
+        if not cart:
+            return jsonify({"error": "Cart not found"}), 404
+        # Delete Data
+        db.execute(
+            "DELETE FROM cart_items WHERE cart_id = ? AND product_id = ?",
+            (cart["id"], product_id)
+        )
+        # Save Changes
+        db.commit()
+        
+        # Calculate new total
+        cart_items = db.execute("""
+            SELECT items.price, COUNT(*) as quantity 
+            FROM items 
+            JOIN cart_items ON items.id = cart_items.product_id
+            WHERE cart_items.cart_id = ?
+            GROUP BY items.id
+            """, (cart["id"],)).fetchall()
+        
+        subtotal = sum(item["price"] * item["quantity"] for item in cart_items)
+        tax = round(subtotal * 0.08, 2)  # Assuming 8% tax
+        total = round(subtotal + tax, 2)
+        
+        return jsonify({
+            "success": True,
+            "subtotal": subtotal,
+            "tax": tax,
+            "total": total
+        })
+    except Exception as e:
+        return jsonify({"Error": str(e)}), 500
+  return redirect("/cart")
 # Profile
 @app.route("/profile")
 @login_required
@@ -199,7 +241,36 @@ def history():
 @app.route("/shop", methods=["GET", "POST"])
 def shop():
   if request.method == "POST":
-    print("HELLO")
+    try:
+      data = request.get_json()
+      product_id = data["product_id"]
+      user_id = session['user_id']
+      db = get_db()
+      # IF SIGNEED IN / USERS
+      if user_id:
+        # Locate Cart
+        cart = db.execute("SELECT id FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
+        print("CART >> ", {cart})
+        # CREATE CART IF NONE
+        if not cart:
+          print("HELLO")
+          db.execute("INSERT INTO cart (owner_id) VALUES (?)", (user_id,))
+          cart = db.execute("SELECT * FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
+          cart_id = cart["id"]
+        # GET CART ID
+        else:
+          print("Already Exists")
+          cart_id = cart["id"]
+        # ADD TO CART 
+        db.execute(
+          "INSERT INTO cart_items (cart_id, product_id) VALUES (?, ?)", 
+          (cart_id, product_id)
+        )
+        db.commit()
+
+        return jsonify({"success": True, "cart_id": cart_id})
+    except Exception as e:
+      return jsonify({"DERROR": str(e)}), 500
   else:
     user_id = session['user_id']
     db = get_db()
