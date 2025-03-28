@@ -21,7 +21,14 @@
         <li class="nav-item"><a class="nav-link"href="/profile">Profile</a></li>
         <li class="nav-item"><a class="nav-link"href="/shop">Shop</a></li>
         <li class="nav-item"><a class="nav-link"href="/logout">Sign-out</a></li>
-        <li class="nav-item"><a class="nav-link" href="/cart"><img class="svg-icon" src="/static/images/svg/cart-large-minimalistic-Brown.svg" alt=""></a></li>
+        <li class="nav-item">
+          <a class="nav-link cart-icon" href="/cart">
+            <img class="svg-icon" src="/static/images/svg/cart-large-minimalistic-Brown.svg" alt="">
+            {% if cart_count and cart_count > 0%}
+            <span class="cart-badge">{{cart_count}}</span>
+            {%endif%}
+          </a>
+      </li>
       </ul>
       {% else %}
       <ul class="nav-list">

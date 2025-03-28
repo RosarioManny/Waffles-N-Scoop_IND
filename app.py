@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, session, g, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
-from helpers import login_required, get_db, remove_cart_item
+from helpers import login_required, get_db
 from flask_session import Session
 from config import Config
 import sqlite3
@@ -140,15 +140,14 @@ def cart():
         """, (cart_id,)
         ).fetchall()
       
-      cart_total = 0
+      subtotal = 0
       for item in current_cart_items:
         print(dict(item))
-        cart_total += (item["price"] * item["quantity"])
-      print(cart_total)
-      tax = 0.08
-      tax_amount = round(tax * cart_total, 2)
-      # print(f'CARTID >> {cart["id"], } USER >> {cart["owner_id"]}')
-    return render_template("cart.html", cart_items=current_cart_items, cart_total=cart_total, tax=tax_amount, tax_p=tax)
+        subtotal += (item["price"] * item["quantity"])
+      print(subtotal)
+      tax = round(.08 * subtotal, 2)
+      total = subtotal + tax
+    return render_template("cart.html", cart_items=current_cart_items, subtotal=subtotal, tax=tax, total=total)
 
 # REMOVE ITEM FROM CART
 @app.route("/cart/remove", methods=["DELETE"])
@@ -182,9 +181,12 @@ def remove_cart():
             GROUP BY items.id
             """, (cart["id"],)).fetchall()
         
-        subtotal = sum(item["price"] * item["quantity"] for item in cart_items)
-        tax = round(subtotal * 0.08, 2)  # Assuming 8% tax
-        total = round(subtotal + tax, 2)
+        subtotal = 0
+        for item in cart_items:
+          subtotal += (item["price"] * item["quantity"])
+        
+        tax = round(0.08 * subtotal, 2)
+        total  = subtotal + tax
         
         return jsonify({
             "success": True,

@@ -16,9 +16,12 @@ textarea {
 ul {
   list-style-type: none;
 }
+a {
+  text-decoration: none;
+}
 /* <<<<<<<<<<<<<<< NAV CONTENT >>>>>>>>>>>>>>>>*/
 nav {
-  box-shadow: 0px 10px 10px 0 rgba(0, 0, 0, .3);
+  box-shadow: 0px 5px 7px 0 rgba(0, 0, 0, .3);
 }
 .nav-container ul {
   display: flex;
@@ -33,7 +36,6 @@ nav {
     justify-content: space-between;
 }
 .nav-link {
-  text-decoration: none;
   color:#332100;
   cursor: pointer;
 }
@@ -43,6 +45,21 @@ nav {
   transition: 200ms ease-in-out;
 }
 
+.cart-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
 /* <<<<<<<<<<<<<<< FOOTER CONTENT >>>>>>>>>>>>>>>>*/
 footer {
   display: flex;
@@ -435,5 +452,23 @@ form {
   transition: 200ms ease-in-out;
   background: #38DDFF;
   cursor: pointer;
+}
 
+.view-cart-container {
+  display: flex;
+  align-items: center;
+  background-color: #DAFFFF;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: solid 3px #553E13
+}
+
+.view-cart-container:hover, 
+.view-cart-container:focus {
+  background-color: #FF8DB5;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+.view-cart-container a {
+  color: #332100;
 }

@@ -11,15 +11,15 @@ async function removeCartItem(event, productId ) {
     if(response.ok) {
       const data = await response.json()
       event.target.closest('li').remove();
-      event.target.closest('hr').remove();
-      console.log("SUCCESS", data)
-      alert("Removed from Cart!");
+      // REFRESH PAGE TO UPDATE TOTAL
+      window.location.reload();
+
+      console.log("SUCCESS :: Removed from Cart!");
     } else {
       const errorData = await response.json()
-      console.log("ERROR",errorData)
-      alert("Failed to remove. :(");
+      console.log("ERROR :: Failed to remove:",errorData)
     }
   } catch (error) {
-    console.error("Error", error)
+    console.error("TRY Error ::", error)
   }
 }

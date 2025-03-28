@@ -5,32 +5,28 @@ Waffles N' ScoopLanding
 {% endblock %}
 
 {% block main%}
-<div>
+<div class="container">
   <h1>Cart Shopping</h1>
   <a href="/shop"> < Shop</a>
   {% if cart_items%}
     {% for i in range(cart_items|length)%}
-    <ul>
-      <li>
+    <ul class="cart-items-container">
+      <li class="cart-item-row">
         <img style="width: 100px; height: 150px;" src="/static/images/Product_Photos{{cart_items[i]['image']}}" alt="">
-        <p>{{ cart_items[i].name }} - ${{ "%.2f"|format(cart_items[i].price) }}</p>
-        <form action="/cart" method="POST">
-          <input type="hidden" name="_method" value="PATCH">
-          <input type="hidden" name="product_id" value="{{ cart_items[i].id }}">
-          <input type="number" name="quantity" min="1" max="12" value="{{ cart_items[i].quantity }}">
-          <button type="submit">Update</button>
-        </form>
-      
+        <p class="cart-item-price">{{ cart_items[i].name }} - ${{ "%.2f"|format(cart_items[i].price) }}</p>
+        <p class="cart-item-quantity"> Amount #{{ cart_items[i].quantity }}</p>
+    
       <!-- Remove Item Form -->
         <form  onsubmit="removeCartItem(event, '{{cart_items[i].id}}')">
-          <button type="submit">Remove</button>
+          <button class="remove-btn" type="submit">Remove</button>
         </form>
+        <hr/>
       </li>
-      <hr/>
     </ul>
     {% endfor %}
-    <p class="tax-amount">Tax: ${{tax}} - {{tax_p}}%</p>
-    <h2 class="cart-total">Total: ${{ cart_total }}</h2>
+    <p class="cart-subtotal">Subtotal: ${{subtotal}}</p>
+    <p class="cart-tax-percent">Tax: ${{tax}} </p>
+    <h2 class="cart-total">Total: ${{ total }}</h2>
     <a href="/checkout"> Check out </a>
   {% else %}
   <p>Your Cart is empty</p>
