@@ -337,14 +337,7 @@ form {
   font-family: "Caprasimo", serif;
   width: 15vw;
 }
-
-/* .profile-fields::placeholder {
-  font-family: "Caprasimo", serif;
-  font-size: 1rem;
-  color:#332100;
-} */
-
-/* <<<<<<<<<<<<<<< SMALL COMPONENTS CONTENT >>>>>>>>>>>>>>>>*/
+/* <<<<<<<<<<<<<<< SMALL COMPONENTS CONTENT >>>>>>>>>>>>>>>> */
 .btn-primary {
   background-color: #38DDFF;
   color:#FFF5E2; 
@@ -386,7 +379,26 @@ form {
   transition: 200ms ease-in-out;
 }
 
-/* <<<<<<<<<<<<<<< SHOP / PRODUCT CONTENT >>>>>>>>>>>>>>>>*/
+.link-btn {
+  display: flex;
+  align-items: center;
+  background-color: #DAFFFF;
+  padding: 0 .5rem;
+  border-radius: 1rem;
+  border: solid 2px #553E13
+}
+
+.link-btn:hover, 
+.link-btn:focus {
+  background-color: #FF8DB5;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+.link-btn p {
+  color: #332100;
+  font-size: .9rem;
+}
+/* <<<<<<<<<<<<<<< SHOP CONTENT >>>>>>>>>>>>>>>>*/
 
 .all-icecreams-container {
   display: flex;
@@ -484,21 +496,70 @@ form {
   cursor: pointer;
 }
 
-.view-cart-container {
+
+/* <<<<<<<<<<<<<<< CART CONTENT >>>>>>>>>>>>>>>>*/
+
+.cart-container {
   display: flex;
-  align-items: center;
-  background-color: #DAFFFF;
-  padding: 1rem;
+  flex-direction: column;
+  background-color: #FFF5E2;
+  width: 75vw;
+  height: auto;
   border-radius: 1rem;
-  border: solid 3px #553E13
+  margin: 1rem 0 0 0 ;
+}
+.cart-container ul {
+  padding: 0 0 0 1rem;
+}
+.cart-item-row {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem 0;
+  margin: .3rem 0;
+  border-bottom: 1px solid #E7D8BA;
+}
+.cart-item-row form{
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+}
+.cart-item-row img{
+  width: 100px; 
+  height: 150px;
+  border-radius: 2.5rem;
+  border: solid 3px #E7D8BA
+}
+.cart-item-value {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.cart-items-details {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.cart-actions {
+  display: flex;
+  align-content: center;
 }
 
-.view-cart-container:hover, 
-.view-cart-container:focus {
-  background-color: #FF8DB5;
-  transition: 200ms ease-in-out;
-  cursor: pointer;
+.cart-pricing-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 1rem 2rem;
 }
-.view-cart-container a {
-  color: #332100;
+
+.cart-total-container p {
+  margin: .5rem 0 ;
+}
+.checkout-container {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+}
+
+.checkout-btn {
+  background-color: #FF8DB5;
 }

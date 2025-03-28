@@ -6,31 +6,46 @@ Waffles N' ScoopLanding
 
 {% block main%}
 <div class="container">
-  <h1>Cart Shopping</h1>
-  <a href="/shop"> < Shop</a>
+  <h1>Shopping Cart</h1>
+  <a href="/shop" class="link-btn"> 
+    <p>< Shop</p>
+  </a>
   {% if cart_items%}
-    {% for i in range(cart_items|length)%}
-    <ul class="cart-items-container">
-      <li class="cart-item-row">
-        <img style="width: 100px; height: 150px;" src="/static/images/Product_Photos{{cart_items[i]['image']}}" alt="">
-        <p class="cart-item-price">{{ cart_items[i].name }} - ${{ "%.2f"|format(cart_items[i].price) }}</p>
-        <p class="cart-item-quantity"> Amount #{{ cart_items[i].quantity }}</p>
-    
-      <!-- Remove Item Form -->
-        <form  onsubmit="removeCartItem(event, '{{cart_items[i].id}}')">
-          <button class="remove-btn" type="submit">Remove</button>
-        </form>
-        <hr/>
-      </li>
+  <div class="cart-container">
+    <ul >
+      {% for i in range(cart_items|length)%}
+        <li class="cart-item-row">
+          <div class="cart-items-details">
+            <img src="/static/images/Product_Photos{{cart_items[i]['image']}}" alt="">
+            <div class="cart-item-value">
+              <p class="cart-item-name">{{ cart_items[i].name }}</p>
+              <p class="cart-item-price"> ${{ "%.2f"|format(cart_items[i].price) }}</p>
+              <p class="cart-item-quantity"> Quantity: {{ cart_items[i].quantity }}</p>
+            </div>
+          </div>
+          <!-- Remove Item Form -->
+          <div class="cart-actions">
+            <form  onsubmit="removeCartItem(event, '{{cart_items[i].id}}')">
+              <button class="remove-btn btn-primary" type="submit">Remove</button>
+            </form>
+          </div>
+        </li>
+      {% endfor %}
     </ul>
-    {% endfor %}
-    <p class="cart-subtotal">Subtotal: ${{subtotal}}</p>
-    <p class="cart-tax-percent">Tax: ${{tax}} </p>
-    <h2 class="cart-total">Total: ${{ total }}</h2>
-    <a href="/checkout"> Check out </a>
+    <div class="cart-pricing-container">
+      <div class="cart-total-container">
+        <p class="cart-subtotal">Subtotal: ${{subtotal}}</p>
+        <p class="cart-tax-percent">Tax: ${{tax}} </p>
+        <p class="cart-total">Total: ${{ total }}</p>
+      </div>
+      <div class="checkout-container">
+        <a class="checkout-btn btn-primary"href="/checkout"> Check out </a>
+      </div>
+    </div>
   {% else %}
-  <p>Your Cart is empty</p>
+    <p>Your Cart is empty</p>
   {% endif %}
+  </div>
 </div>
 {% endblock %}
 {%block javascript%}
