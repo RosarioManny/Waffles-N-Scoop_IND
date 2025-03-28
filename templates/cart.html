@@ -38,9 +38,9 @@ Waffles N' ScoopLanding
         <p class="cart-tax-percent">Tax: ${{tax}} </p>
         <p class="cart-total">Total: ${{ total }}</p>
       </div>
-      <div class="checkout-container">
-        <a class="checkout-btn btn-primary"href="/checkout"> Check out </a>
-      </div>
+      <form class="checkout-container" onsubmit="checkOut(event, '{{total}}')">
+        <button class="checkout-btn btn-primary" type="submit"> Check out </button>
+      </form>
     </div>
   {% else %}
     <p>Your Cart is empty</p>
@@ -50,4 +50,5 @@ Waffles N' ScoopLanding
 {% endblock %}
 {%block javascript%}
 <script src="{{ url_for('static', filename='js/removeCartItem.js')}}"></script>
+<script src="{{ url_for('static', filename='js/checkOut.js')}}"></script>
 {% endblock%}

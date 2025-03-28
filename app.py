@@ -29,6 +29,7 @@ def close_connection(exception):
   if db is not None:
     db.close()
 
+# <<<<<<<<<<<< ROUTES >>>>>>>>>>>>>>>
 # Home
 @app.route("/")
 def index():
@@ -113,6 +114,50 @@ def logout():
 def about():
   return render_template("about.html")
 
+# Shop
+@app.route("/shop", methods=["GET", "POST"])
+def shop():
+  if request.method == "POST":
+    try:
+      data = request.get_json()
+      product_id = data["product_id"]
+      user_id = session['user_id']
+      db = get_db()
+      # IF SIGNEED IN / USERS
+      if user_id:
+        # Locate Cart
+        cart = db.execute("SELECT id FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
+        # print("CART >> ", {cart})
+        # CREATE CART IF NONE
+        if not cart:
+          print("Making cart")
+          db.execute("INSERT INTO cart (owner_id) VALUES (?)", (user_id,))
+          cart = db.execute("SELECT * FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
+          cart_id = cart["id"]
+        # GET CART ID
+        else:
+          print("Already Exists")
+          cart_id = cart["id"]
+        # ADD TO CART 
+        db.execute(
+          "INSERT INTO cart_items (cart_id, product_id) VALUES (?, ?)", 
+          (cart_id, product_id)
+        )
+        db.commit()
+        return jsonify({"success": True, "cart_id": cart_id})
+    except Exception as e:
+      return jsonify({"DERROR": str(e)}), 500
+  else:
+    user_id = session['user_id']
+    db = get_db()
+    #  Get all items
+    fetch_ice_cream = db.execute("SELECT * FROM items WHERE category = 'ice_cream'").fetchall()
+    fetch_merch = db.execute("SELECT * FROM items WHERE category = 'merchandise'").fetchall()
+    fetch_food = db.execute("SELECT * FROM items WHERE category = 'food'").fetchall()
+
+
+    return render_template("shop.html", ice_creams=fetch_ice_cream, merch=fetch_merch, foods=fetch_food) 
+  
 # Cart
 @app.route("/cart", methods=["GET", "POST"])
 def cart():
@@ -127,7 +172,7 @@ def cart():
     
     if user_id:
       cart = db.execute("SELECT id, owner_id FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
-      print(dict(cart))
+      # print(dict(cart))
       cart_id = cart["id"]
       current_cart_items = db.execute(
         """
@@ -142,14 +187,14 @@ def cart():
       
       subtotal = 0
       for item in current_cart_items:
-        print(dict(item))
+        # print(dict(item))
         subtotal += (item["price"] * item["quantity"])
-      print(subtotal)
+      # print(subtotal)
       tax = round(.08 * subtotal, 2)
       total = subtotal + tax
     return render_template("cart.html", cart_items=current_cart_items, subtotal=subtotal, tax=tax, total=total)
 
-# REMOVE ITEM FROM CART
+# Remove item from cart
 @app.route("/cart/remove", methods=["DELETE"])
 @login_required
 def remove_cart():
@@ -197,6 +242,45 @@ def remove_cart():
     except Exception as e:
         return jsonify({"Error": str(e)}), 500
   return redirect("/cart")
+  
+@app.route("/checkout", methods=["GET", "POST"])
+@login_required
+def checkout():
+  if request.method == "POST":
+    user_id = session["user_id"]
+    print(user_id)
+    db = get_db()
+    data = request.get_json()
+    cart_total = data.get("cart_total")
+    cart = db.execute("SELECT id FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
+    print("CT >> ",cart_total)
+    try:
+      # CREATE ORDER
+      db.execute("INSERT INTO orders (order_total, user_id) VALUES (?, ?)", (cart_total, user_id,))
+      #GET THE CREATED ORDER
+      order = db.execute("SELECT * FROM orders WHERE user_id = ? ORDER BY id DESC", (user_id,)).fetchone()
+      print("ORDER >> ", dict(order))
+      # GET ITEMS FROM CART
+      cart_items = db.execute("""
+            SELECT items.id, items.price, COUNT(*) as quantity 
+            FROM items 
+            JOIN cart_items ON items.id = cart_items.product_id
+            WHERE cart_items.cart_id = ?
+            GROUP BY items.id
+            """, (cart["id"],)).fetchall()
+      # ASSOCIATE ITEMS WITH ORDER
+      for item in cart_items:
+        db.execute("INSERT INTO order_items (order_id, product_id, quantity) VALUES (?,?, ?)", (order["id"], item["id"], item["quantity"],))
+        # DELETE CART ITEMS 
+        db.execute("DELETE FROM cart_items WHERE cart_id = ? AND product_id = ?", (cart["id"], item["id"]))
+        print("INSERT & DELETED THIS ITEM >>",dict(item))
+      db.commit()
+      alert("Thank you for purchase")
+    except Exception as e:
+      return jsonify({"Error": str(e)}), 500
+
+  return redirect("/cart")
+
 # Profile
 @app.route("/profile")
 @login_required
@@ -238,48 +322,6 @@ def edit_profile():
 @app.route("/history")
 @login_required
 def history():
+  user_id = session["user_id"]
+
   return render_template("history.html")
-
-@app.route("/shop", methods=["GET", "POST"])
-def shop():
-  if request.method == "POST":
-    try:
-      data = request.get_json()
-      product_id = data["product_id"]
-      user_id = session['user_id']
-      db = get_db()
-      # IF SIGNEED IN / USERS
-      if user_id:
-        # Locate Cart
-        cart = db.execute("SELECT id FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
-        print("CART >> ", {cart})
-        # CREATE CART IF NONE
-        if not cart:
-          print("HELLO")
-          db.execute("INSERT INTO cart (owner_id) VALUES (?)", (user_id,))
-          cart = db.execute("SELECT * FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
-          cart_id = cart["id"]
-        # GET CART ID
-        else:
-          print("Already Exists")
-          cart_id = cart["id"]
-        # ADD TO CART 
-        db.execute(
-          "INSERT INTO cart_items (cart_id, product_id) VALUES (?, ?)", 
-          (cart_id, product_id)
-        )
-        db.commit()
-
-        return jsonify({"success": True, "cart_id": cart_id})
-    except Exception as e:
-      return jsonify({"DERROR": str(e)}), 500
-  else:
-    user_id = session['user_id']
-    db = get_db()
-    #  Get all items
-    fetch_ice_cream = db.execute("SELECT * FROM items WHERE category = 'ice_cream'").fetchall()
-    fetch_merch = db.execute("SELECT * FROM items WHERE category = 'merchandise'").fetchall()
-    fetch_food = db.execute("SELECT * FROM items WHERE category = 'food'").fetchall()
-
-
-    return render_template("shop.html", ice_creams=fetch_ice_cream, merch=fetch_merch, foods=fetch_food) 

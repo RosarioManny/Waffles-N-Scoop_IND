@@ -10,6 +10,7 @@
   <title>Waffle N' Scoop</title>
 </head>
 <body>
+  {% if not mobile %}
   <nav >
     <div class="nav-container">
       <div class="nav-logo-container">
@@ -37,6 +38,9 @@
       {%endif%}
     </div>
   </nav>
+  {% else %}
+    Hello
+  {%endif%}
   <main>
     {% block main %}{% endblock %}
     {% block javascript %}{% endblock %}
@@ -59,7 +63,6 @@
       <h2> More Info</h2>
       <ul>
         <li><a href="/about">About Us</a></li>
-        <li><a href="/FAQ">FAQ</a></li>
         <li><a href="/about#product-section">Location</a></li>
       </ul>
     </section>
