@@ -277,11 +277,9 @@ def shop():
     user_id = session['user_id']
     db = get_db()
     #  Get all items
-    fetch_ice_cream = db.execute("SELECT * FROM items WHERE category = 'ice_cream'")
-    fetch_merch = db.execute("SELECT * FROM items WHERE category = 'merchandise'")
-    fetch_food = db.execute("SELECT * FROM items WHERE category = 'food'")
-    ALL_ice_creams = fetch_ice_cream.fetchall()
-    ALL_merch = fetch_merch.fetchall()
-    ALL_food = fetch_food.fetchall()
+    fetch_ice_cream = db.execute("SELECT * FROM items WHERE category = 'ice_cream'").fetchall()
+    fetch_merch = db.execute("SELECT * FROM items WHERE category = 'merchandise'").fetchall()
+    fetch_food = db.execute("SELECT * FROM items WHERE category = 'food'").fetchall()
 
-    return render_template("shop.html", ice_creams=ALL_ice_creams, merch=ALL_merch, foods=ALL_food) 
+
+    return render_template("shop.html", ice_creams=fetch_ice_cream, merch=fetch_merch, foods=fetch_food) 

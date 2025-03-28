@@ -11,10 +11,10 @@ async function addToCart(event, productId) {
     console.log(response)
     if(response.ok) {
       const data = await response.json()
-      console.log("SUCCESS :: Removed from Cart!");
+      console.log("SUCCESS :: Added to Cart!");
     } else {
       const errorData = await response.json()
-      console.log("ERROR :: Failed to remove:",errorData)
+      console.log("ERROR :: Failed to add:",errorData)
     }
   } catch (error) {
     console.error("TRY Error ::", error)

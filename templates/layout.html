@@ -24,9 +24,6 @@
         <li class="nav-item">
           <a class="nav-link cart-icon" href="/cart">
             <img class="svg-icon" src="/static/images/svg/cart-large-minimalistic-Brown.svg" alt="">
-            {% if cart_count and cart_count > 0%}
-            <span class="cart-badge">{{cart_count}}</span>
-            {%endif%}
           </a>
       </li>
       </ul>
@@ -61,9 +58,9 @@
     <section>
       <h2> More Info</h2>
       <ul>
-        <li><a href="">About Us</a></li>
-        <li><a href="">FAQ</a></li>
-        <li><a href="">Location</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/FAQ">FAQ</a></li>
+        <li><a href="/about#product-section">Location</a></li>
       </ul>
     </section>
   </footer>
