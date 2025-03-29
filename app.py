@@ -234,7 +234,7 @@ def remove_cart():
         total  = subtotal + tax
         
         return jsonify({
-            "success": True,
+            "truth": True,
             "subtotal": subtotal,
             "tax": tax,
             "total": total
@@ -248,7 +248,6 @@ def remove_cart():
 def checkout():
   if request.method == "POST":
     user_id = session["user_id"]
-    print(user_id)
     db = get_db()
     data = request.get_json()
     cart_total = data.get("cart_total")
@@ -275,7 +274,12 @@ def checkout():
         db.execute("DELETE FROM cart_items WHERE cart_id = ? AND product_id = ?", (cart["id"], item["id"]))
         print("INSERT & DELETED THIS ITEM >>",dict(item))
       db.commit()
-      alert("Thank you for purchase")
+
+      return jsonify({
+                "success": True,
+                "message": "Checkout complete! Thank you for your purchase.",
+                "order_id": order["id"]
+            })
     except Exception as e:
       return jsonify({"Error": str(e)}), 500
 
@@ -323,5 +327,35 @@ def edit_profile():
 @login_required
 def history():
   user_id = session["user_id"]
+  db = get_db()
+    # Get all orders for the user
+  orders = db.execute("""
+      SELECT id, order_date, order_total 
+      FROM orders 
+      WHERE user_id = ?
+      ORDER BY order_date DESC
+  """, (user_id,)).fetchall()
+    
+  order_history = []
+    
+  for order in orders:
+    # Get items for each order
+    print("ORDER >>", order)
+    items = db.execute("""
+        SELECT items.name, items.price, items.image, order_items.quantity
+        FROM order_items
+        JOIN items ON order_items.product_id = items.id
+        WHERE order_items.order_id = ?
+    """, (order['id'],)).fetchall()
+    print("ITEMS >>", items)
+    print("---------------------------")
+    order_history.append({
+      'order_id': order['id'],
+      'order_date': order['order_date'],
+      'order_total': order['order_total'],
+      'items': [dict(item) for item in items] 
+    })
+  
+  print("O-HIST >> ", order_history)
 
-  return render_template("history.html")
+  return render_template("history.html", order_history=order_history)

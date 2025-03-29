@@ -1,21 +1,36 @@
 {% extends "layout.html" %}
 
-{% block title%}
-Waffles N' ScoopLanding
-{% endblock %}
+{% block title %}Order History{% endblock %}
 
-{% block main%}
-<div>
-  <h1>History</h1>
-  <section>
-    <div>
-      {% if not order_history%}
-      <h2>No current History</h2>
-      {%endif%}
-    </div>
-  </section>
+{% block main %}
+<div class="container">
+    <h1>Order History</h1>
+    
+    {% if order_history and order_history|length > 0 %}
+        {% for order in order_history %}
+            <div class="order-card">
+                <h3>Order #{{ order.order_id }}</h3>
+                <p>Date: {{ order.order_date }}</p>
+                <p>Total: ${{ "%.2f"|format(order.order_total) }}</p>
+                
+                <div class="order-items">
+                    {% for i in order['items'] %}
+                        <div class="order-item">
+                            <img src="/static/images/Product_Photos{{ order.items[i]['image'] }}" 
+                                alt="{{ order.items[i]['name'] }}"
+                                width="80">
+                            <div>
+                                <p>{{ order.items[i]['name'] }}</p>
+                                <p>Price: ${{ order.items[i]['price'] }}</p>
+                                <p>Quantity: {{ order.items[i]['quantity'] }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No orders found</p>
+    {% endif %}
 </div>
-{% endblock %}
-{% block javascript %}
-<script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
 {% endblock %}

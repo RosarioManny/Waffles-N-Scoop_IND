@@ -8,15 +8,16 @@ async function checkOut(event, total) {
       body: JSON.stringify({ cart_total: total}),
     });
 
-    console.log(response)
+    const result = await response.json();
     if(response.ok) {
-      const data = await response.json();
-      event.target.closest("ul").remove();
+      alert(result.message);
+      
+      event.target.closest('ul').remove();
+
       window.location.reload();
-      alert("Thank you for Your Purchase!", data);
     } else {
       const errorData = await response.json()
-      console.log("ERROR :: Failed to add:",errorData);
+      alert("ERROR :: Failed to purchase:");
     }
   } catch (error) {
     console.error("TRY Error ::", error);
