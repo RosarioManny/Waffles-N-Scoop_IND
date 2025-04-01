@@ -10,7 +10,7 @@
   <title>Waffle N' Scoop</title>
 </head>
 <body>
-  {% if not mobile %}
+  <main>
   <nav >
     <div class="nav-container">
       <div class="nav-logo-container">
@@ -38,34 +38,30 @@
       {%endif%}
     </div>
   </nav>
-  {% else %}
-    Hello
-  {%endif%}
-  <main>
     {% block main %}{% endblock %}
     {% block javascript %}{% endblock %}
+    <footer>
+      <section>
+        <h2>Join Our Newsletter</h2>
+        <input type="text" placeholder="Email">
+        <img src="" alt="">
+      </section>
+      <section class="socials-container">
+        <h2>Follow Us</h2>
+        <ul class="logos-container">
+          <li ><img class="social-logo" src="/static/images/svg/Bluesky-Brown.svg" alt=""></li>
+          <li ><img class="social-logo" src="/static/images/svg/instagram-svgrepo-com (2).svg" alt=""></li>
+          <li ><img class="social-logo" src="/static/images/svg/tiktok-svgrepo-com.svg" alt=""></li>
+        </ul>
+      </section>
+      <section>
+        <h2> More Info</h2>
+        <ul>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/about#product-section">Location</a></li>
+        </ul>
+      </section>
+    </footer>
   </main>
-  <footer>
-    <section>
-      <h2>Join Our Newsletter</h2>
-      <input type="text" placeholder="Email">
-      <img src="" alt="">
-    </section>
-    <section class="socials-container">
-      <h2>Follow Us</h2>
-      <ul class="logos-container">
-        <li ><img class="social-logo" src="/static/images/svg/Bluesky-Brown.svg" alt=""></li>
-        <li ><img class="social-logo" src="/static/images/svg/instagram-svgrepo-com (2).svg" alt=""></li>
-        <li ><img class="social-logo" src="/static/images/svg/tiktok-svgrepo-com.svg" alt=""></li>
-      </ul>
-    </section>
-    <section>
-      <h2> More Info</h2>
-      <ul>
-        <li><a href="/about">About Us</a></li>
-        <li><a href="/about#product-section">Location</a></li>
-      </ul>
-    </section>
-  </footer>
 </body>
 </html>

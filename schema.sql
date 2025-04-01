@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS cart_items (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     cart_id INTEGER,          -- Links to `cart.id`
     product_id INTEGER,       -- Links to `products.id`
-    amount INTEGER,
+    quantity INTEGER,
     added_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (cart_id) REFERENCES cart(id),
     FOREIGN KEY (product_id) REFERENCES products(id)

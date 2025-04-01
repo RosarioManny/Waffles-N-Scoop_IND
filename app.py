@@ -122,6 +122,8 @@ def shop():
       data = request.get_json()
       product_id = data["product_id"]
       user_id = session['user_id']
+      quantity = data["quantity"]
+      print('SHOP QUANT >>', quantity)
       db = get_db()
       # IF SIGNEED IN / USERS
       if user_id:
@@ -140,8 +142,8 @@ def shop():
           cart_id = cart["id"]
         # ADD TO CART 
         db.execute(
-          "INSERT INTO cart_items (cart_id, product_id) VALUES (?, ?)", 
-          (cart_id, product_id)
+          "INSERT INTO cart_items (cart_id, product_id, quantity) VALUES (?, ?, ?)", 
+          (cart_id, product_id, quantity)
         )
         db.commit()
         return jsonify({"success": True, "cart_id": cart_id})
@@ -164,7 +166,7 @@ def cart():
 
   # EDIT ITEMS IN CART 
   if request.method == "POST":
-    print("HELLO")
+    return redirect("/cart")
   # GET ROUTE - SHOW ITEMS IN CART
   else:
     user_id = session["user_id"]
@@ -176,7 +178,7 @@ def cart():
       cart_id = cart["id"]
       current_cart_items = db.execute(
         """
-        SELECT items.image, items.id, items.name, items.price, COUNT(*) as quantity 
+        SELECT items.image, items.id, items.name, items.price, CI.quantity as quantity
         FROM items 
         JOIN cart_items AS CI 
         ON items.id = CI.product_id 
@@ -184,7 +186,7 @@ def cart():
         GROUP BY items.id
         """, (cart_id,)
         ).fetchall()
-      
+      # print(current_cart_items[0]["quantity"])
       subtotal = 0
       for item in current_cart_items:
         # print(dict(item))
@@ -321,41 +323,3 @@ def edit_profile():
     user = db.execute("SELECT name, email, description FROM users WHERE id = ?", (user_id,)).fetchone()
     print(user)
     return render_template("edit_profile.html", user_id=user_id, name=user["name"], email=user["email"], description=user["description"] )
-
-# History
-@app.route("/history")
-@login_required
-def history():
-  user_id = session["user_id"]
-  db = get_db()
-    # Get all orders for the user
-  orders = db.execute("""
-      SELECT id, order_date, order_total 
-      FROM orders 
-      WHERE user_id = ?
-      ORDER BY order_date DESC
-  """, (user_id,)).fetchall()
-    
-  order_history = []
-    
-  for order in orders:
-    # Get items for each order
-    print("ORDER >>", order)
-    items = db.execute("""
-        SELECT items.name, items.price, items.image, order_items.quantity
-        FROM order_items
-        JOIN items ON order_items.product_id = items.id
-        WHERE order_items.order_id = ?
-    """, (order['id'],)).fetchall()
-    print("ITEMS >>", items)
-    print("---------------------------")
-    order_history.append({
-      'order_id': order['id'],
-      'order_date': order['order_date'],
-      'order_total': order['order_total'],
-      'items': [dict(item) for item in items] 
-    })
-  
-  print("O-HIST >> ", order_history)
-
-  return render_template("history.html", order_history=order_history)

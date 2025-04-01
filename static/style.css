@@ -1,16 +1,13 @@
 body {
-  margin: 0;
   font-family:  "Caprasimo", serif;
   font-weight: 300;
   overscroll-behavior: none;
   background-image: url("../static/images/Product_Photos/BG-General.png");
 }
 main,html, body {
-  min-width: 100vw;
-}
-html {
   margin: 0;
-  scroll-behavior: smooth;
+  min-width: 100vw;
+  height: max-content;
 }
 
 textarea {
@@ -22,9 +19,14 @@ ul {
 a {
   text-decoration: none;
 }
+
+main {
+  height: 100vh;
+}
 /* <<<<<<<<<<<<<<< NAV CONTENT >>>>>>>>>>>>>>>>*/
 nav {
   box-shadow: 0px 2px 7px 0 rgba(0, 0, 0, .3);
+  width: 100%;
 }
 .nav-container ul {
   display: flex;
@@ -52,9 +54,13 @@ nav {
 footer {
   display: flex;
   justify-content: space-between;
+  width: 100%;
   background: #FFDFF1;
   padding: 1rem;
   color: #332100;
+  /* bottom: 0; */
+  /* position: relative; */
+  margin: auto;
 }
 
 .social-logo {
@@ -94,7 +100,7 @@ footer {
   text-align: center;
   margin: 0;
   width: 100%;
-  /* z-index: -1; */
+  z-index: -1;
 
 }
 
@@ -281,6 +287,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   margin: 3rem 0 10rem 0;
   color: #332100;
 }
@@ -534,9 +541,9 @@ form {
 
 .add-product-btn {
   font-family: "Caprasimo";
-  width: 2rem;
+  width: fit-content;
   height: 2rem;
-  background: #FF8DB5;
+  background: #FFDFF1;
   border-radius: 1rem;
   border: solid 2px  #553E13;
 }
@@ -544,11 +551,54 @@ form {
 .add-product-btn:hover,
 .add-product-btn:focus {
   transition: 200ms ease-in-out;
-  background: #38DDFF;
+  background: #FF8DB5;
   cursor: pointer;
 }
 
+.quantity-controls {
+  background-color: #DAFFFF;
+  border: #DAFFFF 1px solid;
+  padding: 1px;
+  border-radius: 10px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+.quantity-btn {
+  display: flex;
+  justify-content: center;
+  border: none;
+  background-color: #DAFFFF;
+  cursor: pointer;
+  
+  width: 1rem;
+}
+.btn-right {
+  border-radius: 0 10px 10px 0;
+}
+.btn-left {
+  border-radius: 10px 0 0 10px;
+}
+.quantity-input {
+  border: none;
+  text-align: center;
+  font-family: "Caprasimo", serif;
+}
+.quantity-btn:hover,
+.quantity-btn:focus {
+  background-color: #38DDFF;
+}
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide arrows in Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 /* <<<<<<<<<<<<<<< CART CONTENT >>>>>>>>>>>>>>>>*/
 
 .cart-container {

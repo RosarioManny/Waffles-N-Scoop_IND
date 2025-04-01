@@ -6,9 +6,9 @@ const observer = new IntersectionObserver((entries) => {
       entry.target.classList.add('show')
     } 
     // Removes when out of view. Good if you want animation to happen 
-    else {
-      entry.target.classList.remove('show')
-    }
+    // else {
+    //   entry.target.classList.remove('show')
+    // }
   })
 })
 

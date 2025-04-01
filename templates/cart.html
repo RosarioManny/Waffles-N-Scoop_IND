@@ -10,9 +10,6 @@ Waffles N' ScoopLanding
   <a href="/shop" class="link-btn"> 
     <p>< Shop</p>
   </a>
-  <div id="checkout-message" class="hidden">
-    {{message}}
-</div>
   {% if cart_items%}
   <div class="cart-container">
     <ul >
@@ -41,7 +38,7 @@ Waffles N' ScoopLanding
         <p class="cart-tax-percent">Tax: ${{tax}} </p>
         <p class="cart-total">Total: ${{ total }}</p>
       </div>
-      <form class="checkout-container" onsubmit="checkOut(event, '{{total}}')">
+      <form class="checkout-container" action="/cart" method="post" onsubmit="checkOut(event, '{{total}}')">
         <button class="checkout-btn btn-primary" type="submit"> Check out </button>
       </form>
     </div>

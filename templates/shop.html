@@ -11,7 +11,7 @@ Waffles N' Scoop Landing
     <img src="/static/images/svg/cart-large-minimalistic-Brown.svg" style="width: 2rem; height: 2rem;" alt=""> 
     <p>View Cart > </p>
   </a>
-    <ul class="all-icecreams-container">
+    <ul class="all-icecreams-container hidden-fade">
       {% for i in range(ice_creams|length) %}
       <div class="full-product-container ice-cream">
         <img class="product-image"src="/static/images/Product_Photos/{{ice_creams[i].image}}" alt="" />
@@ -22,14 +22,19 @@ Waffles N' Scoop Landing
             <form onsubmit="addToCart(event, '{{ ice_creams[i].id }}')">
               <input type="hidden" name="product_id" value="{{ ice_creams[i].id }}">
               <p class="product-price">${{ ice_creams[i].price }}</p>
-              <button class="add-product-btn" type="submit">+</button type="submit">
+              <div class="quantity-controls">
+                <button type="button" class="quantity-btn btn-left" onclick="decrementQuantity(this)">-</button>
+                <input type="number" name="quantity" class="quantity-input" value="1" min="1" max="10">
+                <button type="button" class="quantity-btn btn-right" onclick="incrementQuantity(this)">+</button>
+              </div>
+              <button class="add-product-btn" type="submit">Add to Cart</button type="submit">
             </form>
           </div>
         </li>
       </div>
       {% endfor%}
     </ul>
-    <ul class="all-foods-container">
+    <ul class="all-foods-container hidden-fade">
       {% for i in range(foods|length) %}
       <div class="full-product-container food">
         <img class="product-image food"src="/static/images/Product_Photos/{{foods[i].image}}" alt="" />
@@ -40,7 +45,12 @@ Waffles N' Scoop Landing
             <form onsubmit="addToCart(event, '{{ foods[i].id }}')">
               <input type="hidden" name="product_id" value="{{ foods[i].id }}">
               <p class="product-price">${{ foods[i].price }}</p>
-              <button class="add-product-btn" type="submit">+</button type="submit">
+              <div class="quantity-controls">
+                <button type="button" class="quantity-btn btn-left" onclick="decrementQuantity(this)">-</button>
+                <input type="number" name="quantity" class="quantity-input" value="1" min="1" max="10">
+                <button type="button" class="quantity-btn btn-right" onclick="incrementQuantity(this)">+</button>
+              </div>
+              <button class="add-product-btn" type="submit">Add to Cart</button type="submit">
               </form>
           </div>
         </li>
@@ -48,7 +58,7 @@ Waffles N' Scoop Landing
       {% endfor%}
     </ul>
     <hr>
-    <ul class="all-merchandise-container">
+    <ul class="all-merchandise-container hidden-fade">
         {% for i in range(merch|length) %}
         <div class="full-product-container merch">
           <img class="product-image merch"src="/static/images/Product_Photos/{{merch[i].image}}" alt="" />
@@ -59,7 +69,12 @@ Waffles N' Scoop Landing
               <form onsubmit="addToCart(event, '{{ merch[i].id }}')">
                 <input type="hidden" name="product_id" value="{{ merch[i].id }}">
                 <p class="product-price">${{ merch[i].price }}</p>
-                <button class="add-product-btn" type="submit">+</button type="submit">
+                <div class="quantity-controls">
+                  <button type="button" class="quantity-btn btn-left" onclick="decrementQuantity(this)">-</button>
+                  <input type="number" name="quantity" class="quantity-input" value="1" min="1" max="10">
+                  <button type="button" class="quantity-btn btn-right" onclick="incrementQuantity(this)">+</button>
+                </div>
+                <button class="add-product-btn" type="submit">Add to Cart</button type="submit">
               </form>
             </div>
           </li>
@@ -70,4 +85,6 @@ Waffles N' Scoop Landing
 {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/addToCart.js')}}"></script>
+<script src="{{ url_for('static', filename='js/quantityControls.js')}}"></script>
+<script src="{{ url_for('static', filename='js/observer.js')}}"></script>
 {% endblock%}
