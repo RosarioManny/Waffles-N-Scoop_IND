@@ -58,8 +58,6 @@ footer {
   background: #FFDFF1;
   padding: 1rem;
   color: #332100;
-  /* bottom: 0; */
-  /* position: relative; */
   margin: auto;
 }
 
@@ -92,6 +90,16 @@ footer {
   display: flex;
   gap:10px;
   padding: 0 0 0 0;
+}
+
+.newsletter-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.newsletter-container input {
+  padding: .5rem;
 }
 
 /* <<<<<<<<<<<<<<< HOME - HEADER CONTENT >>>>>>>>>>>>>>>>*/
@@ -371,9 +379,10 @@ form {
   border: none;
   border-radius: 4rem;
   width: 8vw;
+  text-align: center;
   cursor: pointer;
   font-family: "Caprasimo", serif;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   box-shadow: 0px 5px 2px 0 rgba(0, 0, 0, .3);
 }
 
