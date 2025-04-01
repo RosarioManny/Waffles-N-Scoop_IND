@@ -149,8 +149,10 @@ I use blue as a highlight areas of importance or that I want guest to look at.
 
 Vanilla : Used for backgrounds and input fields
 
-<span style="background-color: #FFFFF6; display: inline-block; width: 1.5rem; height: 1rem; border-radius: 2px">Color</span> &rarr; #FFFFF6
-
+<span style="background-color: #FFFFF6; display: inline-block; width: 1.5rem; height: 1rem; border-radius: 2px"></span> &rarr; #FFFFF6
+![#FFFFF6](https://placehold.co/15x15/FFFFF6/FFFFF6.png) `#FFFFF6`
+- ![#c5f015](https://placehold.co/15x15/c5f015/c5f015.png) `#c5f015`
+- ![#1589F0](https://placehold.co/15x15/1589F0/1589F0.png) `#1589F0`
 <span style="background-color: #FFF5E2; display: inline-block; width: 1.5rem; height: 1rem; border-radius: 2px"></span> &rarr; #FFF5E2
 
 <span style="background-color: #E7D8BA; display: inline-block; width: 1.5rem; height: 1rem; border-radius: 2px"></span> &rarr; #E7D8BA
