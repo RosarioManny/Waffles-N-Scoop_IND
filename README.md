@@ -14,14 +14,16 @@ The purpose for this project is to develop an E-commerce site to practice real w
 
 ## Technologies:
 
-1. Python
-1. Flask
-1. Jinja2
-1. Pip
-1. Github
-1. Bootstrap
-1. CSS
-1. HTML
+1. Python - Code
+1. Javascript - Code
+1. Flask - Backend
+1. Jinja2 - Templating
+1. Pip - Environments
+1. Github - Repository and Code Management
+1. CSS - Stylizing
+1. HTML - Document
+1. Render - Deployment
+1. VScode - Code Intepreter
 
 ## MVP:
 
