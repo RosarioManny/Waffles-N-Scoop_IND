@@ -155,25 +155,16 @@ Vanilla : Used for backgrounds and input fields
   
 Blue Raspberry: Used for call-to-actions, highlights, hovers and other accents of the site.
 
-<span style="background-color: #38DDFF; display: inline-block; width: 1.5rem; height: 1rem; border-radius: 2px"></span> &rarr; #38DDFF
-
-<span style="background-color: #DAFFFF; display: inline-block; width: 1.5rem; height: 1rem; border-radius: 2px"></span> &rarr; #DAFFFF
 - ![#38DDFF](https://placehold.co/15x15/38DDFF/38DDFF.png) `#38DDFF`
 - ![#DAFFFF](https://placehold.co/15x15/DAFFFF/DAFFFF.png) `#DAFFFF`
-- 
+
 Strawbery: Used as the main drive for color. Highlighting titles, links, buttons, important informaion and more.
 
-<span style="background-color: #FFDFF1; display: inline-block; width: 1.5rem; height: 1rem; border-radius: 2px"></span> &rarr; #FFDFF1
-
-<span style="background-color: #FF8DB5; display: inline-block; width: 1.5rem; height: 1rem; border-radius: 2px"></span> &rarr; #FF8DB5
 - ![#FF8DB5](https://placehold.co/15x15/FF8DB5/FF8DB5.png) `#FF8DB5`
 - ![#FFDFF1](https://placehold.co/15x15/FFDFF1/FFDFF1.png) `#FFDFF1`
-- 
+  
 Chocolate: It's dark color was great for fonts and regular text.
 
-<span style="background-color: #332100; display: inline-block; width: 1.5rem; height: 1rem; border-radius: 2px"></span> &rarr; #332100
-
-<span style="background-color: #553E13; display: inline-block; width: 1.5rem; height: 1rem; border-radius: 2px"></span> &rarr; #553E13
 - ![#332100](https://placehold.co/15x15/332100/332100.png) `#332100`
 - ![#553E13](https://placehold.co/15x15/553E13/553E13.png) `#553E13`
 
