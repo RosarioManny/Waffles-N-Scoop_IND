@@ -7,10 +7,17 @@ Waffles N' Scoop Landing
 {% block main%}
 <div class="container shop-container">
   <h1>Shop</h1>
+  {%if user_id%}
   <a class="view-cart-container link-btn" href="/cart">
     <img src="/static/images/svg/cart-large-minimalistic-Brown.svg" style="width: 2rem; height: 2rem;" alt="Cart"> 
-    <p>View Cart > </p>
+    <p>Your Cart &rarr; </p>
   </a>
+  {%else%}
+  <a class="view-cart-container link-btn" href="/login">
+    <img src="/static/images/svg/cart-large-minimalistic-Brown.svg" style="width: 2rem; height: 2rem;" alt="Cart"> 
+    <p>Sign-in to View cart  </p>
+  </a>
+  {%endif%}
     <ul class="all-icecreams-container hidden-fade">
       {% for i in range(ice_creams|length) %}
       <div class="full-product-container ice-cream">

@@ -150,51 +150,56 @@ def shop():
     except Exception as e:
       return jsonify({"DERROR": str(e)}), 500
   else:
-    user_id = session['user_id']
+    try:
+      user_id = session['user_id']
+    except:
+      user_id = None
     db = get_db()
     #  Get all items
     fetch_ice_cream = db.execute("SELECT * FROM items WHERE category = 'ice_cream'").fetchall()
     fetch_merch = db.execute("SELECT * FROM items WHERE category = 'merchandise'").fetchall()
     fetch_food = db.execute("SELECT * FROM items WHERE category = 'food'").fetchall()
-
-
-    return render_template("shop.html", ice_creams=fetch_ice_cream, merch=fetch_merch, foods=fetch_food) 
+    return render_template("shop.html", user_id=user_id, ice_creams=fetch_ice_cream, merch=fetch_merch, foods=fetch_food) 
   
 # Cart
 @app.route("/cart", methods=["GET", "POST"])
 def cart():
-
   # EDIT ITEMS IN CART 
   if request.method == "POST":
     return redirect("/cart")
   # GET ROUTE - SHOW ITEMS IN CART
   else:
-    user_id = session["user_id"]
-    db = get_db()
-    
-    if user_id:
-      cart = db.execute("SELECT id, owner_id FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
-      # print(dict(cart))
-      cart_id = cart["id"]
-      current_cart_items = db.execute(
-        """
-        SELECT items.image, items.id, items.name, items.price, CI.quantity as quantity
-        FROM items 
-        JOIN cart_items AS CI 
-        ON items.id = CI.product_id 
-        WHERE CI.cart_id = ? 
-        GROUP BY items.id
-        """, (cart_id,)
-        ).fetchall()
-      # print(current_cart_items[0]["quantity"])
-      subtotal = 0
-      for item in current_cart_items:
-        # print(dict(item))
-        subtotal += (item["price"] * item["quantity"])
-      # print(subtotal)
-      tax = round(.08 * subtotal, 2)
-      total = subtotal + tax
-    return render_template("cart.html", cart_items=current_cart_items, subtotal=subtotal, tax=tax, total=total)
+    try:
+      user_id = session["user_id"]
+      db = get_db()
+      
+      if user_id:
+        cart = db.execute("SELECT id, owner_id FROM cart WHERE owner_id = ?", (user_id,)).fetchone()
+        # print(dict(cart))
+        cart_id = cart["id"]
+        current_cart_items = db.execute(
+          """
+          SELECT items.image, items.id, items.name, items.price, CI.quantity as quantity
+          FROM items 
+          JOIN cart_items AS CI 
+          ON items.id = CI.product_id 
+          WHERE CI.cart_id = ? 
+          GROUP BY items.id
+          """, (cart_id,)
+          ).fetchall()
+        # print(current_cart_items[0]["quantity"])
+        subtotal = 0
+        for item in current_cart_items:
+          # print(dict(item))
+          subtotal += (item["price"] * item["quantity"])
+        # print(subtotal)
+        tax = round(.08 * subtotal, 2)
+        total = subtotal + tax
+      else:
+        user_id = None
+      return render_template("cart.html", user_id=user_id, cart_items=current_cart_items, subtotal=subtotal, tax=tax, total=total)
+    except: 
+      return render_template("cart.html")
 
 # Remove item from cart
 @app.route("/cart/remove", methods=["DELETE"])
