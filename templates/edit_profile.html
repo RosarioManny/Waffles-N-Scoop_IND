@@ -16,9 +16,9 @@ Waffles N' Scoop - Edit Profile
         {% endif %}
         <!-- EMAIL -->
         {% if not email %}
-        <input autocomplete="off" autofocus class="profile-fields" name="email" placeholder='Email' type="text" >
+        <input autocomplete="off" autofocus autocomplete="off" class="profile-fields" name="email" placeholder='Email' type="text" >
         {% else %}
-        <input autocomplete="off" autofocus class="profile-fields" name="email" placeholder='{{ email }}' type="text" value="{{ email }}" >
+        <input autocomplete="off" autofocus autocomplete="off" class="profile-fields" name="email" placeholder='{{ email }}' type="text" value="{{ email }}" >
         {% endif %}
         <!-- DESCRIPTION -->
         {% if not description %}
