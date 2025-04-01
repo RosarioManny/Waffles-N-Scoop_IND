@@ -16,7 +16,7 @@ Waffles N' ScoopLanding
       {% for i in range(cart_items|length)%}
         <li class="cart-item-row">
           <div class="cart-items-details">
-            <img src="/static/images/Product_Photos{{cart_items[i]['image']}}" alt="">
+            <img src="/static/images/Product_Photos{{cart_items[i]['image']}}" alt="{{ cart_items[i].name }}">
             <div class="cart-item-value">
               <p class="cart-item-name">{{ cart_items[i].name }}</p>
               <p class="cart-item-price"> ${{ "%.2f"|format(cart_items[i].price) }}</p>
@@ -43,7 +43,11 @@ Waffles N' ScoopLanding
       </form>
     </div>
   {% else %}
-    <p>Your Cart is empty</p>
+  <div class="container">
+    <div class="cart-container" style="text-align: center; width: fit-content; padding: 1rem;">
+      <p>Your Cart is empty :( </p>
+    </div>
+  </div>
   {% endif %}
   </div>
 </div>

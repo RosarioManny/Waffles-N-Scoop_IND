@@ -7,7 +7,7 @@ body {
 main,html, body {
   margin: 0;
   min-width: 100vw;
-  height: max-content;
+  height: auto;
 }
 
 textarea {
@@ -98,10 +98,7 @@ footer {
 .header-section {
   position: relative;
   text-align: center;
-  margin: 0;
-  width: 100%;
   z-index: -1;
-
 }
 
 .header-section img {
@@ -109,12 +106,14 @@ footer {
   object-fit: cover;
   height: 80vh;
   text-align: center;
+  border-bottom: #FFDFF1 solid 5px;
 }
 
 .header-text {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 25%;
+  width: 50%;
+  left: 25%;
   transform: translate(-50%, -50%);
   font-family:  "Caprasimo", serif;
   color: #FFFFF6;

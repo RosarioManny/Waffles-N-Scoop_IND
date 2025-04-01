@@ -8,13 +8,13 @@ Waffles N' Scoop Landing
 <div class="container shop-container">
   <h1>Shop</h1>
   <a class="view-cart-container link-btn" href="/cart">
-    <img src="/static/images/svg/cart-large-minimalistic-Brown.svg" style="width: 2rem; height: 2rem;" alt=""> 
+    <img src="/static/images/svg/cart-large-minimalistic-Brown.svg" style="width: 2rem; height: 2rem;" alt="Cart"> 
     <p>View Cart > </p>
   </a>
     <ul class="all-icecreams-container hidden-fade">
       {% for i in range(ice_creams|length) %}
       <div class="full-product-container ice-cream">
-        <img class="product-image"src="/static/images/Product_Photos/{{ice_creams[i].image}}" alt="" />
+        <img class="product-image"src="/static/images/Product_Photos/{{ice_creams[i].image}}" alt="{{ ice_creams[i].name}}" />
         <li >
           <div class="product-info-container">
             <h3 class="product-title"> {{ ice_creams[i].name}} </h3>
@@ -37,7 +37,7 @@ Waffles N' Scoop Landing
     <ul class="all-foods-container hidden-fade">
       {% for i in range(foods|length) %}
       <div class="full-product-container food">
-        <img class="product-image food"src="/static/images/Product_Photos/{{foods[i].image}}" alt="" />
+        <img class="product-image food"src="/static/images/Product_Photos/{{foods[i].image}}" alt="{{foods[i].name}}" />
         <li >
           <div class="product-info-container">
             <h3 class="product-title"> {{ foods[i].name}} </h3>
@@ -61,7 +61,7 @@ Waffles N' Scoop Landing
     <ul class="all-merchandise-container hidden-fade">
         {% for i in range(merch|length) %}
         <div class="full-product-container merch">
-          <img class="product-image merch"src="/static/images/Product_Photos/{{merch[i].image}}" alt="" />
+          <img class="product-image merch"src="/static/images/Product_Photos/{{merch[i].image}}" alt="{{merch[i].name}}" />
           <li >
             <div class="product-info-container">
               <h3 class="product-title"> {{ merch[i].name}} </h3>
