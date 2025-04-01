@@ -12,8 +12,8 @@ Waffles N' ScoopLanding
     <h1 class="header-text">Chilling with our Communities</h1>
   </section>
   <!-- Product -->
-  <section class="product-section" id="product-se">
-    <div>
+  <section class="product-section" id="product-section">
+    <div class="hidden-fade">
       <h2 class="header-pink">Visit Us!</h2>
       <p class="plain-text">Come visit us at our original shop</p>
       <p class="plain-text">
@@ -21,12 +21,12 @@ Waffles N' ScoopLanding
       </p>
       <button class="btn-primary"> <a href="/shop">Order Online! </a></button>
     </div>
-    <img src="/static/images/Product_Photos/Store-Front (1).png" alt="">
+    <img class="hidden-slide-r"src="/static/images/Product_Photos/Store-Front (1).png" alt="">
   </section>
   <!-- Origin -->
   <section class="origin-section" id="origin-section">
-    <img src="/static/images/Product_Photos/American Old Fashioned Ice Cream Parlor _ Enjoy Illinois _ Enjoy Illinois.jpeg" alt="" />
-    <div class="origin-text">
+    <img class="hidden-slide-l"src="/static/images/Product_Photos/American Old Fashioned Ice Cream Parlor _ Enjoy Illinois _ Enjoy Illinois.jpeg" alt="" />
+    <div class="origin-text hidden-fade">
       <h2 class="header-blue">Our Story</h2>
       <p class="plain-text">
         <i style="font-size: 2rem;">M</i>eet Mr. Harold "Harry" Thompson, an ice cream artisan whose life has been a delightful swirl of passion and perseverance. 
@@ -46,6 +46,7 @@ Waffles N' ScoopLanding
   </section>
     <!-- Gallery -->
   <section class="gallery-section" aria-label="Gallery">
+    <h2>Our Customer's Experience</h2>
     <div class="carousel" data-carousel>
       <ul data-slides>
         <li class="carousel-item">
@@ -73,4 +74,5 @@ Waffles N' ScoopLanding
 {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
+<script src="{{ url_for('static', filename='js/observer.js') }}"></script>
 {% endblock %}

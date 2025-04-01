@@ -54,6 +54,38 @@ footer {
   justify-content: space-between;
   background: #FFDFF1;
   padding: 1rem;
+  color: #332100;
+}
+
+.social-logo {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+.social-logo:hover,
+.social-logo:focus {
+  animation: blink 2s infinite ease-in-out;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.socials-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logos-container {
+  display: flex;
+  gap:10px;
+  padding: 0 0 0 0;
 }
 
 /* <<<<<<<<<<<<<<< HOME - HEADER CONTENT >>>>>>>>>>>>>>>>*/
@@ -69,7 +101,7 @@ footer {
 .header-section img {
   width: 100vw;
   object-fit: cover;
-  height: 500px;
+  height: 80vh;
   text-align: center;
 }
 
@@ -83,6 +115,7 @@ footer {
   font-size: 4rem;
   text-shadow: 5px 10px 10px black;
   -webkit-text-stroke: 1px #332100;
+  background-color: rgba(0, 0, 0, .2);
 }
 
 .header-pink {
@@ -384,6 +417,37 @@ form {
 .link-btn p {
   color: #332100;
   font-size: .9rem;
+}
+
+/* <<<<<<<<<<<<<<< ANIMATIONS >>>>>>>>>>>>>>>>*/
+.hidden-slide-l {
+  opacity: 0;
+  filter: blur(2px);
+  transform: translateX(-100%);
+  transition: all 1s ease-out;
+}
+.hidden-slide-r {
+  opacity: 0;
+  filter: blur(2px);
+  transform: translateX(100%);
+  transition: all 1s ease-out;
+}
+
+.hidden-fade {
+  opacity: 0;
+  filter: blur(1px);
+  transition: all 1s ease-in-out;
+}
+@media(prefers-reduced-motion) {
+  .hidden-fade,
+  .hidden-slide {
+    transition: none;
+  }
+}
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
 }
 /* <<<<<<<<<<<<<<< SHOP CONTENT >>>>>>>>>>>>>>>>*/
 

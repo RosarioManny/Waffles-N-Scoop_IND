@@ -11,14 +11,14 @@ Waffles N' ScoopLanding
     <h1 class="header-text">Homemade Crunch, Natural Experience</h1>
   </section>
   <!-- Product -->
-  <section class="product-section">
-    <div>
+  <section class="product-section ">
+    <div class="hidden-slide-l">
       <h2 class="header-pink">New! Birthday Confetti Cake! </h2>
-      <p class="plain-text">
+      <p class="plain-text ">
         Try our new Birthday Confetti Cake ice cream!
       </p>
     </div>
-    <img src="/static/images/Ice_cream_Photos/Birthday-Cake-Ice-Cream.jpeg" alt="">
+    <img class='hidden-slide-r' src="/static/images/Ice_cream_Photos/Birthday-Cake-Ice-Cream.jpeg" alt="">
   </section>
   <!-- Gallery -->
   <section class="gallery-section" aria-label="Gallery">
@@ -44,8 +44,8 @@ Waffles N' ScoopLanding
   </section>
   <!-- Call-to-Action -->
   <section class="CTA-section">
-    <h2 class="header-blue">Your Next Crunch!</h2>
-    <p class="plain-text info-p">
+    <h2 class="header-blue hidden-slide-r">Your Next Crunch!</h2>
+    <p class="plain-text info-p hidden-fade">
       <i style="font-size: 2rem;">A</i>t Waffle N' Scoop, we’re all about combining the warmth of waffles with the cool joy of ice cream. 
       Whether you’re craving a classic cone, a decadent sundae, or our signature waffle bowls, we’ve got something 
       to satisfy every sweet tooth. Made with love and the finest ingredients, every bite is a little piece of happiness. 
@@ -56,4 +56,5 @@ Waffles N' ScoopLanding
 {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
+<script src="{{ url_for('static', filename='js/observer.js') }}"></script>
 {% endblock %}
