@@ -6,6 +6,8 @@
 
 ## Video DEMO: https://youtu.be/_ofKBf1KtyY?si=kiGvDklRJ84uBc9f
 
+## Site: https://wafflesnscoop.onrender.com/
+
 ## Description:
 
 An ice cream e-commerce website made to give the feel of purchaseing products like ice-cream, ice-cream products and company merchandise.
