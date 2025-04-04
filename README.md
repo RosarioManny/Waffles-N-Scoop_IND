@@ -4,7 +4,7 @@
 
 <img src="./static/images/Product_Photos/Waffle_N_Scoop_logo.png">
 
-## Video DEMO:
+## Video DEMO: https://youtu.be/_ofKBf1KtyY?si=kiGvDklRJ84uBc9f
 
 ## Description:
 
@@ -44,17 +44,17 @@ The purpose for this project is to develop an E-commerce site to practice real w
 
 ## Routes & Endpoints
 
-- "/register" - Registration Page - GET, POST
-- "/login" - Sign-In Page - GET, POST
-- "/logout" - Logout
-- "/" - Home page - GET
-- "/about" - About Page - GET
-- "/shop" - Shop Page - GET, POST
-- "/cart" - Cart Page - GET, POST
-  "/cart/remove" - Remove Item from cart - POST
-- "/checkout" - POST
-- "/profile" - Profile Page - GET
-- "/edit-profile" - GET, POST
+- "/register" - Registration Page - GET, POST - register.html | The page where the user will register an account -
+- "/login" - Sign-In Page - GET, POST - login.html | The page where the user will log into their account
+- "/logout" - Logout - No HTML | This route will clear the session, logging the user out.
+- "/" - Home page - GET - index.html | This is the landing/home page. Details about the companies newest deals, welcome phrase and inviting user to explore the website.
+- "/about" - About Page - GET - about.html | The page that tells the user about the company and what it's about. Learn about the company, it's founder and view other guest experience.
+- "/shop" - Shop Page - GET, POST - shop.html | This is the shop page. Users can view and add to their cart items they would like to buy
+- "/cart" - Cart Page - GET, POST - cart.html | This is the user's cart. Able to view and edit their items, see their total and checkout.
+  "/cart/remove" - Remove Item from cart - POST - No HTML | This removes items from the cart.
+- "/checkout" - POST - No HTML | This initiates and creates the checkout for the user. Creating a "purchase"
+- "/profile" - Profile Page - GET - profile.html | This is where the user can view their profile name, email, id and short description.
+- "/edit-profile" - GET, POST - edit_profile.html | The area where the user can edit their name, email and short-description.
 
 ## Models
 
@@ -152,7 +152,7 @@ Vanilla : Used for backgrounds and input fields
 - ![#FFFFF6](https://placehold.co/15x15/FFFFF6/FFFFF6.png) `#FFFFF6`
 - ![#FFF5E2](https://placehold.co/15x15/FFF5E2/FFF5E2.png) `#FFF5E2`
 - ![#E7D8BA](https://placehold.co/15x15/E7D8BA/E7D8BA.png) `#E7D8BA`
-  
+
 Blue Raspberry: Used for call-to-actions, highlights, hovers and other accents of the site.
 
 - ![#38DDFF](https://placehold.co/15x15/38DDFF/38DDFF.png) `#38DDFF`
@@ -162,7 +162,7 @@ Strawbery: Used as the main drive for color. Highlighting titles, links, buttons
 
 - ![#FF8DB5](https://placehold.co/15x15/FF8DB5/FF8DB5.png) `#FF8DB5`
 - ![#FFDFF1](https://placehold.co/15x15/FFDFF1/FFDFF1.png) `#FFDFF1`
-  
+
 Chocolate: It's dark color was great for fonts and regular text.
 
 - ![#332100](https://placehold.co/15x15/332100/332100.png) `#332100`
